@@ -3,15 +3,35 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>منصة واعي | حلول إدارية تصنع أثرًا</title>
-  <meta name="description" content="منصة واعي للاستشارات الإدارية والحلول الرقمية: لوحات متابعة، الحوكمة، الخطط التشغيلية، ومواقع تعريفية." />
+  <meta name="description" content="منصة واعي للاستشارات الإدارية والحلول الرقمية: لوحات متابعة، الحوكمة، الخطط التشغيلية، ومواقع تعريفية — بهوية سعودية حديثة.">
+
   <meta name="theme-color" content="#0d3b66"/>
+  <link rel="canonical" href="https://waai-website.vercel.app/">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="منصة واعي | حلول إدارية تصنع أثرًا">
+  <meta property="og:description" content="استشارات وحلول تنفيذية ولوحات متابعة تسرّع القرار وترفع الانضباط.">
+  <meta property="og:image" content="https://i.postimg.cc/bJg0kTnH/950-CE200-F226-4340-B438-AB91664-C9-FA5.jpg">
+  <meta property="og:locale" content="ar_SA">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="منصة واعي | حلول إدارية تصنع أثرًا">
+  <meta name="twitter:description" content="استشارات وحلول تنفيذية ولوحات متابعة تسرّع القرار وترفع الانضباط.">
+  <meta name="twitter:image" content="https://i.postimg.cc/bJg0kTnH/950-CE200-F226-4340-B438-AB91664-C9-FA5.jpg">
+
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon (Data‑URI SVG) -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="%230d3b66"/><text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="28" fill="%23ffffff">واعي</text></svg>'>
+
   <style>
     :root{
       --bg:#0d3b66; --bg2:#0f4c81; --acc:#2ec4b6;
       --muted:#e6eef6; --text:#0f2640; --white:#fff;
-      --shadow:0 10px 25px rgba(13,59,102,.12); --r:18px;
+      --shadow:0 10px 25px rgba(13,59,102,.12); --r:18px; --green:#2ec4b6;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;font-family:'Cairo',system-ui,-apple-system,sans-serif;color:var(--text);scroll-behavior:smooth;background:linear-gradient(180deg,#f7fbff,#f3f7fc 35%,#f8fbff)}
@@ -32,7 +52,7 @@
 
     /* Hero */
     .hero{position:relative;color:#fff;background:linear-gradient(180deg,#0d3b66 0%,#0f4c81 60%,#0f4c81 100%);}
-    .hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;z-index:0}
+    .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 600px at 80% -200px,rgba(255,255,255,.08),transparent 60%)}
     .hero .wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.15fr .95fr;gap:28px;padding:56px 18px 28px;position:relative;z-index:1}
     .hero h1{font-size:clamp(26px,4.2vw,48px);line-height:1.25;margin:0 0 10px;font-weight:800}
     .hero p.lead{opacity:.95;margin:0 0 20px;font-weight:600}
@@ -41,6 +61,9 @@
     .dash{aspect-ratio:16/11;border-radius:16px;overflow:hidden;position:relative}
     .dash img{width:100%;height:100%;object-fit:cover}
     .dash .ov{position:absolute;inset:auto 0 0 0;height:34%;background:linear-gradient(180deg,transparent,rgba(13,59,102,.85));}
+
+    /* Background hero image */
+    .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;z-index:0}
 
     /* Stats */
     .stats{max-width:1200px;margin:34px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 18px}
@@ -60,8 +83,8 @@
     .bar>span{display:block;height:100%;background:linear-gradient(90deg,#2ec4b6,#0f4c81)}
     .quote{background:#0f4c81;color:#eaf4ff;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
     .quote small{opacity:.9}
-    /* اللون الأخضر للأرقام داخل بطاقة أثرنا فقط */
-    .quote .kpi .num{color:var(--acc);}  /* يبقى عنوان "رضا العملاء" و"تسريع اتخاذ القرار" بلون البطاقة */
+    /* اللون الأخضر للأرقام + % داخل بطاقة الاقتباس فقط */
+    .quote .kpi{color:var(--green)}
 
     /* Sections */
     .section{max-width:1200px;margin:54px auto;padding:0 18px}
@@ -106,12 +129,6 @@
     .float{animation:float 7s ease-in-out infinite}
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
-    /* Thank You overlay */
-    .thanks{position:fixed;inset:0;background:rgba(13,59,102,.9);color:#fff;display:none;align-items:center;justify-content:center;z-index:80}
-    .thanks .box{max-width:620px;margin:0 18px;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.35);text-align:center}
-    .thanks h2{margin:0 0 8px}
-    .thanks p{opacity:.95}
-
     /* Responsive */
     @media (max-width:1024px){.hero .wrap{grid-template-columns:1fr;gap:18px}.contact{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.impact-grid{grid-template-columns:1fr}}
     @media (max-width:640px){.links{display:none}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
@@ -120,13 +137,13 @@
 <body id="top">
 
   <!-- Header -->
-  <header class="nav">
+  <header class="nav" role="banner">
     <div class="wrap">
-      <a href="#top" class="brand">
+      <a href="#top" class="brand" aria-label="منصة واعي">
         <div class="badge"><span>واعي</span></div>
         <div>منصة واعي</div>
       </a>
-      <nav class="links">
+      <nav class="links" role="navigation" aria-label="روابط علوية">
         <a href="#services">الخدمات</a>
         <a href="#impact">أثرنا</a>
         <a href="#contact">تواصل</a>
@@ -137,10 +154,10 @@
 
   <!-- Hero -->
   <section class="hero">
-    <!-- الخلفية كصورة مباشرة مع fallback -->
-    <img class="bg" id="heroBg"
-         src="https://i.ibb.co/BHN872n/18-B90.png"
-         alt="فريق سعودي ولوحات أداء">
+    <!-- خلفية الـHero كرابطك مع fallback -->
+    <img class="hero-bg" id="heroBg"
+         src="https://i.postimg.cc/bJg0kTnH/950-CE200-F226-4340-B438-AB91664-C9-FA5.jpg"
+         alt="بيئة عمل سعودية ولوحات أداء" fetchpriority="high">
     <div class="wrap">
       <div class="reveal">
         <h1>نصمّم حلولًا إداريّة <span style="color:#2ec4b6">تصنع أثرًا</span></h1>
@@ -151,9 +168,10 @@
         </div>
       </div>
 
-      <div class="glass reveal float">
+      <div class="glass reveal float" aria-hidden="true">
         <div class="dash">
-          <img alt="لوحة متابعة تفاعلية" src="https://images.unsplash.com/photo-1598946206786-017c3c8d00ae?q=80&w=1600&auto=format&fit=crop"
+          <img alt="لوحة متابعة تفاعلية" width="1600" height="1100"
+               src="https://images.unsplash.com/photo-1598946206786-017c3c8d00ae?q=80&w=1600&auto=format&fit=crop"
                onerror="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop'">
           <div class="ov"></div>
         </div>
@@ -194,8 +212,8 @@
     <div class="grid">
       <article class="card reveal">
         <figure>
-          <img alt="حوكمة سعودية" src="https://images.unsplash.com/photo-1634942537035-3bb6b52ca457?q=80&w=1600&auto=format&fit=crop"
-               onerror="this.src='https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop'">
+          <img alt="حوكمة سعودية" loading="lazy" width="1600" height="900"
+               src="https://images.unsplash.com/photo-1634942537035-3bb6b52ca457?q=80&w=1600&auto=format&fit=crop&fm=jpg">
         </figure>
         <div class="content">
           <h3>الحوكمة وبناء الأطر</h3>
@@ -207,8 +225,8 @@
 
       <article class="card reveal">
         <figure>
-          <img alt="لوحات متابعة سعودية" src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop"
-               onerror="this.src='https://images.unsplash.com/photo-1600880292089-90e7e86ef3c9?q=80&w=1600&auto=format&fit=crop'">
+          <img alt="لوحات متابعة" loading="lazy" width="1600" height="900"
+               src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop&fm=jpg">
         </figure>
         <div class="content">
           <h3>لوحات متابعة تفاعلية</h3>
@@ -220,8 +238,8 @@
 
       <article class="card reveal">
         <figure>
-          <img alt="خطط تشغيلية" src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=1600&auto=format&fit=crop"
-               onerror="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop'">
+          <img alt="خطط تشغيلية" loading="lazy" width="1600" height="900"
+               src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=1600&auto=format&fit=crop&fm=jpg">
         </figure>
         <div class="content">
           <h3>الخطط التشغيلية</h3>
@@ -241,7 +259,7 @@
     <div class="impact-grid">
       <div class="panel reveal">
         <div class="case">
-          <img src="https://images.unsplash.com/photo-1585503418537-88331351ad99?q=80&w=1600&auto=format&fit=crop" alt="قطاع غير ربحي سعودي">
+          <img loading="lazy" width="1200" height="800" src="https://images.unsplash.com/photo-1585503418537-88331351ad99?q=80&w=1600&auto=format&fit=crop&fm=jpg" alt="قطاع غير ربحي سعودي">
           <div>
             <strong>منظمة غير ربحية (الرياض)</strong>
             <p style="margin:.3em 0 8px">بناء إطار حوكمة وتفعيل مؤشرات تشغيلية.</p>
@@ -251,7 +269,7 @@
         </div>
 
         <div class="case">
-          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop" alt="شركة تقنية سعودية">
+          <img loading="lazy" width="1200" height="800" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop&fm=jpg" alt="شركة تقنية سعودية">
           <div>
             <strong>شركة تقنية (الخبر)</strong>
             <p style="margin:.3em 0 8px">تصميم لوحات متابعة للإدارة التنفيذية.</p>
@@ -261,7 +279,7 @@
         </div>
 
         <div class="case">
-          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop" alt="قطاع تعليمي سعودي">
+          <img loading="lazy" width="1200" height="800" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop&fm=jpg" alt="قطاع تعليمي سعودي">
           <div>
             <strong>مؤسسة تعليمية (جدة)</strong>
             <p style="margin:.3em 0 8px">خطة تشغيلية وربطها بالمبادرات ومؤشرات الأداء.</p>
@@ -271,17 +289,17 @@
         </div>
       </div>
 
-      <div class="quote reveal">
+      <div class="quote reveal" aria-label="نتائج مختصرة">
         <div style="font-weight:800;font-size:20px;line-height:1.6">"واعي غيّر طريقة اتخاذ القرار عندنا—لوحات واضحة، تقارير أسرع، والتزام أعلى."</div>
         <small>مدير تنفيذي — قطاع غير ربحي</small>
         <hr style="border-color:rgba(255,255,255,.2)">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <div>
-            <div class="kpi"><span class="num counter" data-target="92">0</span><small>%</small></div>
+            <div class="kpi"><span class="counter" data-target="92">0</span><small>%</small></div>
             <div>رضا العملاء</div>
           </div>
           <div>
-            <div class="kpi"><span class="num counter" data-target="65">0</span><small>%</small></div>
+            <div class="kpi"><span class="counter" data-target="65">0</span><small>%</small></div>
             <div>تسريع اتخاذ القرار</div>
           </div>
         </div>
@@ -301,15 +319,15 @@
           <li>البريد: <strong>abdulaziz.algharawi@gmail.com</strong></li>
           <li>سناب/تيك توك/إنستغرام: <strong>@waai.sa</strong></li>
         </ul>
-        <img class="reveal" alt="فريق سعودي يعمل على لوحات ومشاريع"
-             src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1600&auto=format&fit=crop"
+        <img class="reveal" loading="lazy" width="1600" height="1000" alt="فريق سعودي يعمل على لوحات ومشاريع"
+             src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1600&auto=format&fit=crop&fm=jpg"
              style="border-radius:14px;box-shadow:var(--shadow);margin-top:6px">
       </div>
 
       <div class="panel reveal">
         <h3 style="margin-top:0">نموذج طلب خدمة</h3>
         <form id="leadForm" class="lead-form" onsubmit="return submitLead(event)"
-              data-endpoint="https://formspree.io/f/xdkdynbr">
+              data-endpoint="https://formspree.io/f/xdkdynbr" aria-label="نموذج طلب خدمة">
           <div class="inp"><label>الاسم الكامل</label><input name="name" type="text" required placeholder="الاسم"></div>
           <div class="inp"><label>البريد الإلكتروني</label><input name="email" type="email" required placeholder="example@email.com"></div>
           <div class="inp"><label>رقم الجوال</label><input name="phone" type="tel" placeholder="05xxxxxxxx" inputmode="tel"></div>
@@ -334,10 +352,10 @@
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer role="contentinfo">
     <div class="wrap">
       <div class="credit">© 2025 منصة واعي – جميع الحقوق محفوظة</div>
-      <nav class="foot-links">
+      <nav class="foot-links" aria-label="روابط سفلية">
         <a href="#services">الخدمات</a>
         <a href="#impact">أثرنا</a>
         <a href="#contact">تواصل</a>
@@ -347,15 +365,15 @@
 
   <!-- WhatsApp Floating -->
   <div class="wa">
-    <a aria-label="تواصل واتساب" href="https://wa.me/966552794082" target="_blank" rel="noopener">
+    <a aria-label="تواصل عبر واتساب" href="https://wa.me/966552794082" target="_blank" rel="noopener">
       <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.52c-.28-.14-1.65-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.74.9-.9 1.08-.17.19-.34.21-.62.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.29-.02-.45.12-.59.12-.12.28-.31.42-.46.14-.16.19-.27.28-.46.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.1-.23-.55-.47-.47-.64-.48l-.54-.01c-.19 0-.49.07-.75.35-.26.27-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.12.55-.08 1.65-.67 1.88-1.31.23-.65.23-1.2.16-1.31-.07-.12-.26-.19-.55-.33zM26.67 5.33C23.87 2.53 20.17 1 16.27 1 8.41 1 2 7.41 2 15.27c0 2.5.66 4.93 1.91 7.07L2 31l8.86-1.86c2.09 1.14 4.45 1.74 6.88 1.74h.01c7.86 0 14.27-6.41 14.27-14.27.01-3.9-1.52-7.6-4.35-10.41z"/></svg>
     </a>
   </div>
 
   <!-- Back to top -->
-  <button id="toTop" aria-label="العودة للأعلى">↑</button>
+  <button id="toTop" aria-label="العودة للأعلى" title="العودة للأعلى">↑</button>
 
-  <!-- Thank You (صفحة شكر داخلية) -->
+  <!-- Thank You overlay -->
   <div id="thanks" class="thanks" aria-hidden="true">
     <div class="box">
       <h2>شكرًا! 🎉</h2>
@@ -368,7 +386,7 @@
   </div>
 
   <script>
-    // Fallback لصورة الـ hero لو فشل رابط imgbb
+    // Fallback لصورة الـHero لو فشل الرابط
     const hero = document.getElementById('heroBg');
     hero.addEventListener('error', () => {
       hero.src = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1600&auto=format&fit=crop';
@@ -404,7 +422,7 @@
     window.addEventListener('scroll', ()=>{ toTop.style.display = (window.scrollY > 400) ? 'block' : 'none'; });
     toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
 
-    // Thank You overlay helpers
+    // شكراً Overlay
     const thanksEl = document.getElementById('thanks');
     function showThanks(){ thanksEl.style.display='flex'; thanksEl.setAttribute('aria-hidden','false'); }
     function hideThanks(){ thanksEl.style.display='none'; thanksEl.setAttribute('aria-hidden','true'); }
