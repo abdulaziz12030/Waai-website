@@ -6,7 +6,6 @@
 
   <title>منصة واعي | حلول إدارية تصنع أثرًا</title>
   <meta name="description" content="منصة واعي للاستشارات الإدارية والحلول الرقمية: لوحات متابعة، الحوكمة، الخطط التشغيلية، ومواقع تعريفية — بهوية سعودية حديثة.">
-
   <meta name="theme-color" content="#0d3b66"/>
   <link rel="canonical" href="https://waai-website.vercel.app/">
 
@@ -45,8 +44,8 @@
     .badge{min-width:64px;height:36px;padding:0 10px;border-radius:12px;background:linear-gradient(135deg,var(--bg),var(--bg2));display:grid;place-items:center;box-shadow:var(--shadow)}
     .badge span{color:#fff;font-weight:900;font-size:18px}
     .links{margin-inline-start:auto;display:flex;gap:18px;font-weight:600}
-    .btn{background:var(--bg);color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.25s}
-    .btn:hover{transform:translateY(-1px);background:#0b3356}
+    .btn{background:var(--bg);color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.25s transform}
+    .btn:hover{transform:translateY(-1px) scale(1.02);background:#0b3356}
     .btn-outline{background:#fff;color:var(--bg);border:2px solid var(--bg)}
     .btn-cta{background:linear-gradient(135deg,var(--bg),var(--bg2));}
 
@@ -57,17 +56,17 @@
     .hero h1{font-size:clamp(26px,4.2vw,48px);line-height:1.25;margin:0 0 10px;font-weight:800}
     .hero p.lead{opacity:.95;margin:0 0 20px;font-weight:600}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-    .glass{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.2);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+    .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;z-index:0;transform:translateY(0);transition:transform .2s}
+    .glass{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.2);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);transform:perspective(800px) rotateX(0) rotateY(0);transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+    .glass:hover{transform:perspective(800px) rotateX(2deg) rotateY(-2deg)}
     .dash{aspect-ratio:16/11;border-radius:16px;overflow:hidden;position:relative}
     .dash img{width:100%;height:100%;object-fit:cover}
     .dash .ov{position:absolute;inset:auto 0 0 0;height:34%;background:linear-gradient(180deg,transparent,rgba(13,59,102,.85));}
 
-    /* Background hero image */
-    .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;z-index:0}
-
     /* Stats */
     .stats{max-width:1200px;margin:34px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 18px}
-    .stat{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:18px;text-align:center}
+    .stat{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:18px;text-align:center;transition:transform .3s}
+    .stat:hover{transform:translateY(-4px)}
     .kpi{font-size:clamp(26px,3.5vw,38px);font-weight:800;color:var(--bg)}
     .kpi small{font-size:.55em;color:#5b7a99}
     .stat p{margin:6px 0 0;font-weight:700;color:#355a7e}
@@ -83,14 +82,15 @@
     .bar>span{display:block;height:100%;background:linear-gradient(90deg,#2ec4b6,#0f4c81)}
     .quote{background:#0f4c81;color:#eaf4ff;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
     .quote small{opacity:.9}
-    /* اللون الأخضر للأرقام + % داخل بطاقة الاقتباس فقط */
+    /* الأخضر للأرقام + % داخل بطاقة الاقتباس فقط */
     .quote .kpi{color:var(--green)}
 
     /* Sections */
     .section{max-width:1200px;margin:54px auto;padding:0 18px}
     .section h2{font-size:clamp(22px,3vw,32px);margin:0 0 14px;font-weight:800;color:var(--bg)}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .card{background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+    .card{background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s, box-shadow .35s}
+    .card:hover{transform:translateY(-6px);box-shadow:0 16px 38px rgba(13,59,102,.16)}
     .card figure{aspect-ratio:16/9;overflow:hidden}
     .card figure img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform .6s cubic-bezier(.2,.7,.3,1)}
     .card:hover figure img{transform:scale(1.12)}
@@ -123,7 +123,7 @@
     .wa svg{width:30px;height:30px;fill:#fff}
     #toTop{position:fixed;right:16px;bottom:86px;z-index:70;width:52px;height:52px;border:none;border-radius:14px;background:#0d3b66;color:#fff;box-shadow:0 10px 24px rgba(13,59,102,.25);display:none;cursor:pointer;font-size:20px}
 
-    /* Reveal */
+    /* Reveal & motion */
     .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
     .reveal.show{opacity:1;transform:none}
     .float{animation:float 7s ease-in-out infinite}
@@ -154,12 +154,12 @@
 
   <!-- Hero -->
   <section class="hero">
-    <!-- خلفية الـHero كرابطك مع fallback -->
+    <!-- خلفية الـHero كرابطك مع Parallax + fallback -->
     <img class="hero-bg" id="heroBg"
          src="https://i.postimg.cc/bJg0kTnH/950-CE200-F226-4340-B438-AB91664-C9-FA5.jpg"
          alt="بيئة عمل سعودية ولوحات أداء" fetchpriority="high">
     <div class="wrap">
-      <div class="reveal">
+      <div class="reveal" data-stagger="1">
         <h1>نصمّم حلولًا إداريّة <span style="color:#2ec4b6">تصنع أثرًا</span></h1>
         <p class="lead">استشارات، لوحات متابعة، حوكمة، ومحتوى إداري يعزز أداء منظمتك — بهوية سعودية حديثة.</p>
         <div class="hero-actions">
@@ -168,7 +168,7 @@
         </div>
       </div>
 
-      <div class="glass reveal float" aria-hidden="true">
+      <div class="glass reveal float" aria-hidden="true" data-stagger="2">
         <div class="dash">
           <img alt="لوحة متابعة تفاعلية" width="1600" height="1100"
                src="https://images.unsplash.com/photo-1598946206786-017c3c8d00ae?q=80&w=1600&auto=format&fit=crop"
@@ -185,19 +185,19 @@
 
     <!-- Stats -->
     <div class="stats" id="numbers">
-      <div class="stat reveal">
+      <div class="stat reveal" data-stagger="3">
         <div class="kpi"><span class="counter" data-target="120">0</span><small>+</small></div>
         <p>جهة مستفيدة</p>
       </div>
-      <div class="stat reveal">
+      <div class="stat reveal" data-stagger="4">
         <div class="kpi"><span class="counter" data-target="85">0</span><small>%</small></div>
         <p>تحسن في سرعة التقارير</p>
       </div>
-      <div class="stat reveal">
+      <div class="stat reveal" data-stagger="5">
         <div class="kpi"><span class="counter" data-target="40">0</span></div>
         <p>لوحة متابعة مُنفّذة</p>
       </div>
-      <div class="stat reveal">
+      <div class="stat reveal" data-stagger="6">
         <div class="kpi"><span class="counter" data-target="15">0</span><small>+</small></div>
         <p>سنوات خبرة</p>
       </div>
@@ -210,10 +210,12 @@
     <p class="note reveal">نُصمم الخدمة بما يوافق احتياجك… من التخطيط إلى التشغيل.</p>
 
     <div class="grid">
-      <article class="card reveal">
+      <!-- 1) الحوكمة وبناء الأطر (صورة سعودية) -->
+      <article class="card reveal" data-stagger="1">
         <figure>
-          <img alt="حوكمة سعودية" loading="lazy" width="1600" height="900"
-               src="https://images.unsplash.com/photo-1634942537035-3bb6b52ca457?q=80&w=1600&auto=format&fit=crop&fm=jpg">
+          <img alt="حوكمة وبناء الأطر بشكل احترافي في بيئة سعودية" loading="lazy" width="1600" height="900"
+               src="https://images.unsplash.com/photo-1549921296-3b4a72b9be0d?q=80&w=1600&auto=format&fit=crop&fm=jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop&fm=jpg'">
         </figure>
         <div class="content">
           <h3>الحوكمة وبناء الأطر</h3>
@@ -223,10 +225,11 @@
         </div>
       </article>
 
-      <article class="card reveal">
+      <!-- 2) لوحات متابعة تفاعلية -->
+      <article class="card reveal" data-stagger="2">
         <figure>
-          <img alt="لوحات متابعة" loading="lazy" width="1600" height="900"
-               src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop&fm=jpg">
+          <img alt="لوحات متابعة تفاعلية مع عرض مؤشرات أداء في اجتماع إداري" loading="lazy" width="1600" height="900"
+               src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=1600&auto=format&fit=crop&fm=jpg">
         </figure>
         <div class="content">
           <h3>لوحات متابعة تفاعلية</h3>
@@ -236,10 +239,11 @@
         </div>
       </article>
 
-      <article class="card reveal">
+      <!-- 3) الخطط التشغيلية -->
+      <article class="card reveal" data-stagger="3">
         <figure>
-          <img alt="خطط تشغيلية" loading="lazy" width="1600" height="900"
-               src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=1600&auto=format&fit=crop&fm=jpg">
+          <img alt="إعداد الخطط التشغيلية ومتابعة التنفيذ" loading="lazy" width="1600" height="900"
+               src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop&fm=jpg">
         </figure>
         <div class="content">
           <h3>الخطط التشغيلية</h3>
@@ -319,9 +323,11 @@
           <li>البريد: <strong>abdulaziz.algharawi@gmail.com</strong></li>
           <li>سناب/تيك توك/إنستغرام: <strong>@waai.sa</strong></li>
         </ul>
-        <img class="reveal" loading="lazy" width="1600" height="1000" alt="فريق سعودي يعمل على لوحات ومشاريع"
-             src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1600&auto=format&fit=crop&fm=jpg"
-             style="border-radius:14px;box-shadow:var(--shadow);margin-top:6px">
+        <!-- صورة تواصل طولية (مديرة أعمال/عنصر نسائي) -->
+        <img class="reveal" loading="lazy" width="800" height="1066"
+             alt="مديرة أعمال في مكتب حديث تتواصل مع فريقها"
+             src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=1200&auto=format&fit=crop&fm=jpg"
+             style="border-radius:14px;box-shadow:var(--shadow);margin-top:6px;aspect-ratio:3/4;object-fit:cover">
       </div>
 
       <div class="panel reveal">
@@ -366,7 +372,7 @@
   <!-- WhatsApp Floating -->
   <div class="wa">
     <a aria-label="تواصل عبر واتساب" href="https://wa.me/966552794082" target="_blank" rel="noopener">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.52c-.28-.14-1.65-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.74.9-.9 1.08-.17.19-.34.21-.62.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.29-.02-.45.12-.59.12-.12.28-.31.42-.46.14-.16.19-.27.28-.46.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.1-.23-.55-.47-.47-.64-.48l-.54-.01c-.19 0-.49.07-.75.35-.26.27-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.12.55-.08 1.65-.67 1.88-1.31.23-.65.23-1.2.16-1.31-.07-.12-.26-.19-.55-.33zM26.67 5.33C23.87 2.53 20.17 1 16.27 1 8.41 1 2 7.41 2 15.27c0 2.5.66 4.93 1.91 7.07L2 31l8.86-1.86c2.09 1.14 4.45 1.74 6.88 1.74h.01c7.86 0 14.27-6.41 14.27-14.27.01-3.9-1.52-7.6-4.35-10.41z"/></svg>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.52c-.28-.14-1.65-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.74.9-.9 1.08-.17.19-.34.21-.62.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.29-.02-.45.12-.59.12-.12.28-.31.42-.46.14-.16.19-.27.28-.46.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.1-.23-.55-.47-.47-.64-.48l-.54-.01c-.19 0-.49.07-.75.35-.26.27-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.12.55-.08 1.65-.67 1.88-1.31.23-.65.23-1.2.16-1.31-.07-.12-.26-.19-.55-.33z"/></svg>
     </a>
   </div>
 
@@ -392,17 +398,26 @@
       hero.src = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1600&auto=format&fit=crop';
     });
 
-    // Scroll reveal + counters
+    // Parallax بسيط لخلفية الـHero
+    window.addEventListener('scroll', ()=> {
+      const y = window.scrollY * 0.12;
+      hero.style.transform = `translateY(${y}px)`;
+    });
+
+    // Scroll reveal + counters + stagger
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
-          e.target.classList.add('show');
-          if(e.target.querySelector && e.target.querySelector('.counter')) startCounters(e.target);
+          const delay = (e.target.dataset.stagger ? Number(e.target.dataset.stagger)*80 : 0);
+          setTimeout(()=>{
+            e.target.classList.add('show');
+            if(e.target.querySelector && e.target.querySelector('.counter')) startCounters(e.target);
+          }, delay);
           io.unobserve(e.target);
         }
       })
     },{threshold:.2});
-    document.querySelectorAll('.reveal, .stat, .impact .panel, .impact .quote').forEach(el=>io.observe(el));
+    document.querySelectorAll('.reveal, .stat, .impact .panel, .impact .quote, .card').forEach(el=>io.observe(el));
 
     function startCounters(scope){
       scope.querySelectorAll('.counter').forEach(el=>{
