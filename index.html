@@ -3,34 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>منصة واعي | حلول إدارية تصنع أثرًا</title>
-  <meta name="description" content="منصة واعي للاستشارات الإدارية والحلول الرقمية: لوحات متابعة، الحوكمة، الخطط التشغيلية، ومواقع تعريفية — بهوية سعودية حديثة.">
+  <meta name="description" content="منصة واعي للاستشارات الإدارية والحلول الرقمية: لوحات متابعة، الحوكمة، الخطط التشغيلية، ومواقع تعريفية." />
   <meta name="theme-color" content="#0d3b66"/>
-  <link rel="canonical" href="https://waai-website.vercel.app/">
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="منصة واعي | حلول إدارية تصنع أثرًا">
-  <meta property="og:description" content="استشارات وحلول تنفيذية ولوحات متابعة تسرّع القرار وترفع الانضباط.">
-  <meta property="og:image" content="https://i.postimg.cc/bJg0kTnH/950-CE200-F226-4340-B438-AB91664-C9-FA5.jpg">
-  <meta property="og:locale" content="ar_SA">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="منصة واعي | حلول إدارية تصنع أثرًا">
-  <meta name="twitter:description" content="استشارات وحلول تنفيذية ولوحات متابعة تسرّع القرار وترفع الانضباط.">
-  <meta name="twitter:image" content="https://i.postimg.cc/bJg0kTnH/950-CE200-F226-4340-B438-AB91664-C9-FA5.jpg">
-
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Favicon (Data‑URI SVG) -->
-  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="%230d3b66"/><text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="28" fill="%23ffffff">واعي</text></svg>'>
-
   <style>
     :root{
       --bg:#0d3b66; --bg2:#0f4c81; --acc:#2ec4b6;
       --muted:#e6eef6; --text:#0f2640; --white:#fff;
-      --shadow:0 10px 25px rgba(13,59,102,.12); --r:18px; --green:#2ec4b6;
+      --shadow:0 10px 25px rgba(13,59,102,.12); --r:18px;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;font-family:'Cairo',system-ui,-apple-system,sans-serif;color:var(--text);scroll-behavior:smooth;background:linear-gradient(180deg,#f7fbff,#f3f7fc 35%,#f8fbff)}
@@ -44,29 +25,22 @@
     .badge{min-width:64px;height:36px;padding:0 10px;border-radius:12px;background:linear-gradient(135deg,var(--bg),var(--bg2));display:grid;place-items:center;box-shadow:var(--shadow)}
     .badge span{color:#fff;font-weight:900;font-size:18px}
     .links{margin-inline-start:auto;display:flex;gap:18px;font-weight:600}
-    .btn{background:var(--bg);color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.25s transform}
-    .btn:hover{transform:translateY(-1px) scale(1.02);background:#0b3356}
+    .btn{background:var(--bg);color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.25s}
+    .btn:hover{transform:translateY(-1px);background:#0b3356}
     .btn-outline{background:#fff;color:var(--bg);border:2px solid var(--bg)}
     .btn-cta{background:linear-gradient(135deg,var(--bg),var(--bg2));}
 
     /* Hero */
     .hero{position:relative;color:#fff;background:linear-gradient(180deg,#0d3b66 0%,#0f4c81 60%,#0f4c81 100%);}
-    .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 600px at 80% -200px,rgba(255,255,255,.08),transparent 60%)}
-    .hero .wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.15fr .95fr;gap:28px;padding:56px 18px 28px;position:relative;z-index:1}
+    .hero::before{content:"";position:absolute;inset:0;background:url('https://i.postimg.cc/bJg0kTnH/950-CE200-F226-4340-B438-AB91664-C9-FA5.jpg') center/cover no-repeat;opacity:.18}
+    .hero .wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr;gap:28px;padding:64px 18px 36px;position:relative}
     .hero h1{font-size:clamp(26px,4.2vw,48px);line-height:1.25;margin:0 0 10px;font-weight:800}
     .hero p.lead{opacity:.95;margin:0 0 20px;font-weight:600}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-    .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;z-index:0;transform:translateY(0);transition:transform .2s}
-    .glass{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.2);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);transform:perspective(800px) rotateX(0) rotateY(0);transition:transform .6s cubic-bezier(.2,.7,.3,1)}
-    .glass:hover{transform:perspective(800px) rotateX(2deg) rotateY(-2deg)}
-    .dash{aspect-ratio:16/11;border-radius:16px;overflow:hidden;position:relative}
-    .dash img{width:100%;height:100%;object-fit:cover}
-    .dash .ov{position:absolute;inset:auto 0 0 0;height:34%;background:linear-gradient(180deg,transparent,rgba(13,59,102,.85));}
 
     /* Stats */
-    .stats{max-width:1200px;margin:34px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 18px}
-    .stat{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:18px;text-align:center;transition:transform .3s}
-    .stat:hover{transform:translateY(-4px)}
+    .stats{max-width:1200px;margin:8px auto 34px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 18px}
+    .stat{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:18px;text-align:center}
     .kpi{font-size:clamp(26px,3.5vw,38px);font-weight:800;color:var(--bg)}
     .kpi small{font-size:.55em;color:#5b7a99}
     .stat p{margin:6px 0 0;font-weight:700;color:#355a7e}
@@ -82,15 +56,12 @@
     .bar>span{display:block;height:100%;background:linear-gradient(90deg,#2ec4b6,#0f4c81)}
     .quote{background:#0f4c81;color:#eaf4ff;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
     .quote small{opacity:.9}
-    /* الأخضر للأرقام + % داخل بطاقة الاقتباس فقط */
-    .quote .kpi{color:var(--green)}
 
     /* Sections */
     .section{max-width:1200px;margin:54px auto;padding:0 18px}
     .section h2{font-size:clamp(22px,3vw,32px);margin:0 0 14px;font-weight:800;color:var(--bg)}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .card{background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s, box-shadow .35s}
-    .card:hover{transform:translateY(-6px);box-shadow:0 16px 38px rgba(13,59,102,.16)}
+    .card{background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
     .card figure{aspect-ratio:16/9;overflow:hidden}
     .card figure img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform .6s cubic-bezier(.2,.7,.3,1)}
     .card:hover figure img{transform:scale(1.12)}
@@ -123,11 +94,17 @@
     .wa svg{width:30px;height:30px;fill:#fff}
     #toTop{position:fixed;right:16px;bottom:86px;z-index:70;width:52px;height:52px;border:none;border-radius:14px;background:#0d3b66;color:#fff;box-shadow:0 10px 24px rgba(13,59,102,.25);display:none;cursor:pointer;font-size:20px}
 
-    /* Reveal & motion */
+    /* Reveal */
     .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
     .reveal.show{opacity:1;transform:none}
     .float{animation:float 7s ease-in-out infinite}
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+    /* Thank You overlay */
+    .thanks{position:fixed;inset:0;background:rgba(13,59,102,.9);color:#fff;display:none;align-items:center;justify-content:center;z-index:80}
+    .thanks .box{max-width:620px;margin:0 18px;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.35);text-align:center}
+    .thanks h2{margin:0 0 8px}
+    .thanks p{opacity:.95}
 
     /* Responsive */
     @media (max-width:1024px){.hero .wrap{grid-template-columns:1fr;gap:18px}.contact{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.impact-grid{grid-template-columns:1fr}}
@@ -136,14 +113,19 @@
 </head>
 <body id="top">
 
+  <script>
+    /* ضع هنا رابط الصورة الطولية لسيدة سعودية (يمكنك تغييره لاحقًا فقط) */
+    const CONTACT_IMG = "https://images.unsplash.com/photo-1615571022219-1f8f6dd5d8d2?q=80&w=1200&auto=format&fit=crop"; 
+  </script>
+
   <!-- Header -->
-  <header class="nav" role="banner">
+  <header class="nav">
     <div class="wrap">
-      <a href="#top" class="brand" aria-label="منصة واعي">
+      <a href="#top" class="brand">
         <div class="badge"><span>واعي</span></div>
         <div>منصة واعي</div>
       </a>
-      <nav class="links" role="navigation" aria-label="روابط علوية">
+      <nav class="links">
         <a href="#services">الخدمات</a>
         <a href="#impact">أثرنا</a>
         <a href="#contact">تواصل</a>
@@ -154,12 +136,8 @@
 
   <!-- Hero -->
   <section class="hero">
-    <!-- خلفية الـHero كرابطك مع Parallax + fallback -->
-    <img class="hero-bg" id="heroBg"
-         src="https://i.postimg.cc/bJg0kTnH/950-CE200-F226-4340-B438-AB91664-C9-FA5.jpg"
-         alt="بيئة عمل سعودية ولوحات أداء" fetchpriority="high">
     <div class="wrap">
-      <div class="reveal" data-stagger="1">
+      <div class="reveal">
         <h1>نصمّم حلولًا إداريّة <span style="color:#2ec4b6">تصنع أثرًا</span></h1>
         <p class="lead">استشارات، لوحات متابعة، حوكمة، ومحتوى إداري يعزز أداء منظمتك — بهوية سعودية حديثة.</p>
         <div class="hero-actions">
@@ -167,37 +145,23 @@
           <a href="#contact" class="btn">اطلب استشارة الآن</a>
         </div>
       </div>
-
-      <div class="glass reveal float" aria-hidden="true" data-stagger="2">
-        <div class="dash">
-          <img alt="لوحة متابعة تفاعلية" width="1600" height="1100"
-               src="https://images.unsplash.com/photo-1598946206786-017c3c8d00ae?q=80&w=1600&auto=format&fit=crop"
-               onerror="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop'">
-          <div class="ov"></div>
-        </div>
-        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-          <span class="tag">مؤشرات أداء</span>
-          <span class="tag">لوحات رقمية</span>
-          <span class="tag">تقارير تنفيذ</span>
-        </div>
-      </div>
     </div>
 
     <!-- Stats -->
     <div class="stats" id="numbers">
-      <div class="stat reveal" data-stagger="3">
+      <div class="stat reveal">
         <div class="kpi"><span class="counter" data-target="120">0</span><small>+</small></div>
         <p>جهة مستفيدة</p>
       </div>
-      <div class="stat reveal" data-stagger="4">
+      <div class="stat reveal">
         <div class="kpi"><span class="counter" data-target="85">0</span><small>%</small></div>
         <p>تحسن في سرعة التقارير</p>
       </div>
-      <div class="stat reveal" data-stagger="5">
+      <div class="stat reveal">
         <div class="kpi"><span class="counter" data-target="40">0</span></div>
         <p>لوحة متابعة مُنفّذة</p>
       </div>
-      <div class="stat reveal" data-stagger="6">
+      <div class="stat reveal">
         <div class="kpi"><span class="counter" data-target="15">0</span><small>+</small></div>
         <p>سنوات خبرة</p>
       </div>
@@ -210,26 +174,23 @@
     <p class="note reveal">نُصمم الخدمة بما يوافق احتياجك… من التخطيط إلى التشغيل.</p>
 
     <div class="grid">
-      <!-- 1) الحوكمة وبناء الأطر (صورة سعودية) -->
-      <article class="card reveal" data-stagger="1">
+      <!-- الخطط التشغيلية (استبدلناها بصورة كانت للّوحات) -->
+      <article class="card reveal">
         <figure>
-          <img alt="حوكمة وبناء الأطر بشكل احترافي في بيئة سعودية" loading="lazy" width="1600" height="900"
-               src="https://images.unsplash.com/photo-1549921296-3b4a72b9be0d?q=80&w=1600&auto=format&fit=crop&fm=jpg"
-               onerror="this.src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop&fm=jpg'">
+          <img alt="الخطط التشغيلية" src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop">
         </figure>
         <div class="content">
-          <h3>الحوكمة وبناء الأطر</h3>
-          <div class="tag">سياسات & إجراءات</div>
-          <p>أدلة وسياسات ومنظومات صلاحيات تعزز الانضباط والوضوح المؤسسي.</p>
+          <h3>الخطط التشغيلية</h3>
+          <div class="tag">من الإستراتيجية للتنفيذ</div>
+          <p>تحويل الأهداف إلى مبادرات ومؤشرات وجدولة تفصيلية قابلة للقياس.</p>
           <div class="actions"><a href="#contact" class="btn">اطلب الخدمة</a></div>
         </div>
       </article>
 
-      <!-- 2) لوحات متابعة تفاعلية -->
-      <article class="card reveal" data-stagger="2">
+      <!-- لوحات متابعة (استبدلناها بصورة كانت للخطط: sticky notes) -->
+      <article class="card reveal">
         <figure>
-          <img alt="لوحات متابعة تفاعلية مع عرض مؤشرات أداء في اجتماع إداري" loading="lazy" width="1600" height="900"
-               src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=1600&auto=format&fit=crop&fm=jpg">
+          <img alt="لوحات متابعة تفاعلية" src="https://images.unsplash.com/photo-1557800636-894a64c1696f?q=80&w=1600&auto=format&fit=crop">
         </figure>
         <div class="content">
           <h3>لوحات متابعة تفاعلية</h3>
@@ -239,16 +200,15 @@
         </div>
       </article>
 
-      <!-- 3) الخطط التشغيلية -->
-      <article class="card reveal" data-stagger="3">
+      <!-- الحوكمة (ثبتنا الصورة المناسبة) -->
+      <article class="card reveal">
         <figure>
-          <img alt="إعداد الخطط التشغيلية ومتابعة التنفيذ" loading="lazy" width="1600" height="900"
-               src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop&fm=jpg">
+          <img alt="حوكمة سعودية" src="https://images.unsplash.com/photo-1634942537035-3bb6b52ca457?q=80&w=1600&auto=format&fit=crop">
         </figure>
         <div class="content">
-          <h3>الخطط التشغيلية</h3>
-          <div class="tag">من الإستراتيجية للتنفيذ</div>
-          <p>تحويل الأهداف إلى مبادرات ومؤشرات وجدولة تفصيلية قابلة للقياس.</p>
+          <h3>الحوكمة وبناء الأطر</h3>
+          <div class="tag">سياسات & إجراءات</div>
+          <p>أدلة وسياسات ومنظومات صلاحيات تعزز الانضباط والوضوح المؤسسي.</p>
           <div class="actions"><a href="#contact" class="btn">اطلب الخدمة</a></div>
         </div>
       </article>
@@ -263,7 +223,7 @@
     <div class="impact-grid">
       <div class="panel reveal">
         <div class="case">
-          <img loading="lazy" width="1200" height="800" src="https://images.unsplash.com/photo-1585503418537-88331351ad99?q=80&w=1600&auto=format&fit=crop&fm=jpg" alt="قطاع غير ربحي سعودي">
+          <img src="https://images.unsplash.com/photo-1585503418537-88331351ad99?q=80&w=1600&auto=format&fit=crop" alt="قطاع غير ربحي سعودي">
           <div>
             <strong>منظمة غير ربحية (الرياض)</strong>
             <p style="margin:.3em 0 8px">بناء إطار حوكمة وتفعيل مؤشرات تشغيلية.</p>
@@ -273,7 +233,7 @@
         </div>
 
         <div class="case">
-          <img loading="lazy" width="1200" height="800" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop&fm=jpg" alt="شركة تقنية سعودية">
+          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop" alt="شركة تقنية سعودية">
           <div>
             <strong>شركة تقنية (الخبر)</strong>
             <p style="margin:.3em 0 8px">تصميم لوحات متابعة للإدارة التنفيذية.</p>
@@ -283,7 +243,7 @@
         </div>
 
         <div class="case">
-          <img loading="lazy" width="1200" height="800" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop&fm=jpg" alt="قطاع تعليمي سعودي">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop" alt="قطاع تعليمي سعودي">
           <div>
             <strong>مؤسسة تعليمية (جدة)</strong>
             <p style="margin:.3em 0 8px">خطة تشغيلية وربطها بالمبادرات ومؤشرات الأداء.</p>
@@ -293,17 +253,17 @@
         </div>
       </div>
 
-      <div class="quote reveal" aria-label="نتائج مختصرة">
+      <div class="quote reveal">
         <div style="font-weight:800;font-size:20px;line-height:1.6">"واعي غيّر طريقة اتخاذ القرار عندنا—لوحات واضحة، تقارير أسرع، والتزام أعلى."</div>
         <small>مدير تنفيذي — قطاع غير ربحي</small>
         <hr style="border-color:rgba(255,255,255,.2)">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <div>
-            <div class="kpi"><span class="counter" data-target="92">0</span><small>%</small></div>
+            <div class="kpi" style="color:#16a34a"><span class="counter" data-target="92">0</span><small>%</small></div>
             <div>رضا العملاء</div>
           </div>
           <div>
-            <div class="kpi"><span class="counter" data-target="65">0</span><small>%</small></div>
+            <div class="kpi" style="color:#16a34a"><span class="counter" data-target="65">0</span><small>%</small></div>
             <div>تسريع اتخاذ القرار</div>
           </div>
         </div>
@@ -323,17 +283,14 @@
           <li>البريد: <strong>abdulaziz.algharawi@gmail.com</strong></li>
           <li>سناب/تيك توك/إنستغرام: <strong>@waai.sa</strong></li>
         </ul>
-        <!-- صورة تواصل طولية (مديرة أعمال/عنصر نسائي) -->
-        <img class="reveal" loading="lazy" width="800" height="1066"
-             alt="مديرة أعمال في مكتب حديث تتواصل مع فريقها"
-             src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=1200&auto=format&fit=crop&fm=jpg"
-             style="border-radius:14px;box-shadow:var(--shadow);margin-top:6px;aspect-ratio:3/4;object-fit:cover">
+        <img class="reveal" id="contactImgEl" alt="سيدة أعمال سعودية"
+             src="" style="border-radius:14px;box-shadow:var(--shadow);margin-top:6px;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center">
       </div>
 
       <div class="panel reveal">
         <h3 style="margin-top:0">نموذج طلب خدمة</h3>
         <form id="leadForm" class="lead-form" onsubmit="return submitLead(event)"
-              data-endpoint="https://formspree.io/f/xdkdynbr" aria-label="نموذج طلب خدمة">
+              data-endpoint="https://formspree.io/f/xdkdynbr">
           <div class="inp"><label>الاسم الكامل</label><input name="name" type="text" required placeholder="الاسم"></div>
           <div class="inp"><label>البريد الإلكتروني</label><input name="email" type="email" required placeholder="example@email.com"></div>
           <div class="inp"><label>رقم الجوال</label><input name="phone" type="tel" placeholder="05xxxxxxxx" inputmode="tel"></div>
@@ -358,10 +315,10 @@
   </section>
 
   <!-- Footer -->
-  <footer role="contentinfo">
+  <footer>
     <div class="wrap">
       <div class="credit">© 2025 منصة واعي – جميع الحقوق محفوظة</div>
-      <nav class="foot-links" aria-label="روابط سفلية">
+      <nav class="foot-links">
         <a href="#services">الخدمات</a>
         <a href="#impact">أثرنا</a>
         <a href="#contact">تواصل</a>
@@ -371,15 +328,15 @@
 
   <!-- WhatsApp Floating -->
   <div class="wa">
-    <a aria-label="تواصل عبر واتساب" href="https://wa.me/966552794082" target="_blank" rel="noopener">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.52c-.28-.14-1.65-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.74.9-.9 1.08-.17.19-.34.21-.62.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.29-.02-.45.12-.59.12-.12.28-.31.42-.46.14-.16.19-.27.28-.46.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.1-.23-.55-.47-.47-.64-.48l-.54-.01c-.19 0-.49.07-.75.35-.26.27-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.12.55-.08 1.65-.67 1.88-1.31.23-.65.23-1.2.16-1.31-.07-.12-.26-.19-.55-.33z"/></svg>
+    <a aria-label="تواصل واتساب" href="https://wa.me/966552794082" target="_blank" rel="noopener">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.52c-.28-.14-1.65-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.74.9-.9 1.08-.17.19-.34.21-.62.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.29-.02-.45.12-.59.12-.12.28-.31.42-.46.14-.16.19-.27.28-.46.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.1-.23-.55-.47-.47-.64-.48l-.54-.01c-.19 0-.49.07-.75.35-.26.27-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.12.55-.08 1.65-.67 1.88-1.31.23-.65.23-1.2.16-1.31-.07-.12-.26-.19-.55-.33zM26.67 5.33C23.87 2.53 20.17 1 16.27 1 8.41 1 2 7.41 2 15.27c0 2.5.66 4.93 1.91 7.07L2 31l8.86-1.86c2.09 1.14 4.45 1.74 6.88 1.74h.01c7.86 0 14.27-6.41 14.27-14.27.01-3.9-1.52-7.6-4.35-10.41z"/></svg>
     </a>
   </div>
 
   <!-- Back to top -->
-  <button id="toTop" aria-label="العودة للأعلى" title="العودة للأعلى">↑</button>
+  <button id="toTop" aria-label="العودة للأعلى">↑</button>
 
-  <!-- Thank You overlay -->
+  <!-- Thank You (صفحة شكر داخلية) -->
   <div id="thanks" class="thanks" aria-hidden="true">
     <div class="box">
       <h2>شكرًا! 🎉</h2>
@@ -392,32 +349,20 @@
   </div>
 
   <script>
-    // Fallback لصورة الـHero لو فشل الرابط
-    const hero = document.getElementById('heroBg');
-    hero.addEventListener('error', () => {
-      hero.src = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1600&auto=format&fit=crop';
-    });
+    // وضع صورة التواصل من المتغيّر
+    document.getElementById('contactImgEl').src = CONTACT_IMG;
 
-    // Parallax بسيط لخلفية الـHero
-    window.addEventListener('scroll', ()=> {
-      const y = window.scrollY * 0.12;
-      hero.style.transform = `translateY(${y}px)`;
-    });
-
-    // Scroll reveal + counters + stagger
+    // Scroll reveal + counters
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
-          const delay = (e.target.dataset.stagger ? Number(e.target.dataset.stagger)*80 : 0);
-          setTimeout(()=>{
-            e.target.classList.add('show');
-            if(e.target.querySelector && e.target.querySelector('.counter')) startCounters(e.target);
-          }, delay);
+          e.target.classList.add('show');
+          if(e.target.querySelector && e.target.querySelector('.counter')) startCounters(e.target);
           io.unobserve(e.target);
         }
       })
     },{threshold:.2});
-    document.querySelectorAll('.reveal, .stat, .impact .panel, .impact .quote, .card').forEach(el=>io.observe(el));
+    document.querySelectorAll('.reveal, .stat, .impact .panel, .impact .quote').forEach(el=>io.observe(el));
 
     function startCounters(scope){
       scope.querySelectorAll('.counter').forEach(el=>{
@@ -437,7 +382,7 @@
     window.addEventListener('scroll', ()=>{ toTop.style.display = (window.scrollY > 400) ? 'block' : 'none'; });
     toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
 
-    // شكراً Overlay
+    // Thank You overlay helpers
     const thanksEl = document.getElementById('thanks');
     function showThanks(){ thanksEl.style.display='flex'; thanksEl.setAttribute('aria-hidden','false'); }
     function hideThanks(){ thanksEl.style.display='none'; thanksEl.setAttribute('aria-hidden','true'); }
