@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>لوحة متابعة أبناء المنزل</title>
+<style>
+  :root{--pri:#0ea5e9;--ok:#10b981;--mut:#64748b;--bg:#f6f8fa;--bd:#e5e7eb;}
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); margin:0; color:#0f172a}
+  header{padding:14px 18px;background:var(--pri);color:#fff}
+  h1{margin:0;font-size:20px}
+  .wrap{max-width:1100px;margin:16px auto;padding:0 12px}
+  .grid{display:grid;gap:12px}
+  @media(min-width:950px){.grid{grid-template-columns:1fr 1fr}}
+  .card{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:14px}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  input,select,button{border:1px solid var(--bd);border-radius:10px;padding:10px 12px;font-size:14px}
+  input[type="number"]{width:90px}
+  button{cursor:pointer;background:var(--pri);color:#fff;border:none}
+  button.secondary{background:#fff;color:var(--pri);border:1px solid var(--pri)}
+  .table{width:100%;border-collapse:collapse;margin-top:8px}
+  .table th,.table td{border-bottom:1px solid var(--bd);padding:8px;text-align:start}
+  .pill{display:inline-block;padding:4px 10px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:12px}
+  .muted{color:var(--mut);font-size:12px}
+  .bar{height:10px;background:#e5e7eb;border-radius:6px;overflow:hidden}
+  .bar>div{height:100%;background:var(--ok)}
+  .kpi-row{display:flex;justify-content:space-between;align-items:center;margin:6px 0}
+  .badge{background:#ecfeff;color:#0e7490;padding:3px 8px;border-radius:6px;font-size:12px}
+  .chip{background:#f1f5f9;border:1px solid var(--bd);padding:3px 8px;border-radius:8px;font-size:12px}
+</style>
+</head>
+<body>
+<header><h1>لوحة متابعة أبناء المنزل</h1></header>
+<div class="wrap">
+  <div class="grid">
+
+    <!-- إعداد الأطفال والمعايير -->
+    <section class="card">
+      <h3>١) الإعداد</h3>
+      <div class="row">
+        <input id="childName" placeholder="اسم الطفل (عمر/شهد/فارس)" />
+        <button id="addChild">إضافة طفل</button>
+      </div>
+      <table class="table" id="childrenTable">
+        <thead><tr><th>الاسم</th><th>حذف</th></tr></thead><tbody></tbody>
+      </table>
+
+      <hr>
+      <div class="row">
+        <input id="critName" placeholder="اسم المعيار (نظافة/عبادات/أخلاق...)" />
+        <select id="critType">
+          <option value="bool">تحقق/لم يتحقق</option>
+          <option value="score">درجة من 10</option>
+        </select>
+        <input id="critWeight" type="number" min="1" value="1" />
+        <button id="addCrit">إضافة معيار</button>
+      </div>
+      <table class="table" id="criteriaTable">
+        <thead><tr><th>المعيار</th><th>النوع</th><th>الوزن</th><th>حذف</th></tr></thead><tbody></tbody>
+      </table>
+
+      <div class="row" style="margin-top:6px">
+        <button class="secondary" id="resetAll">إعادة ضبط</button>
+        <button class="secondary" id="exportCsv">تصدير CSV</button>
+        <span class="badge">الحفظ تلقائيًا على جهازك</span>
+      </div>
+      <p class="muted" style="margin-top:6px">يمكن تعديل أسماء الأطفال والمعايير والأوزان مباشرة، وسيتم تحديث كل شيء فورًا.</p>
+    </section>
+
+    <!-- إدخال اليوم -->
+    <section class="card">
+      <h3>٢) إدخال إنجازات اليوم</h3>
+      <div class="row">
+        <input id="entryDate" type="date"/>
+        <button id="todayBtn" class="secondary">اليوم</button>
+        <button id="saveEntries">حفظ</button>
+      </div>
+      <div id="entriesZone"></div>
+      <div id="log" style="margin-top:8px"></div>
+    </section>
+
+    <!-- مؤشرات الأداء -->
+    <section class="card">
+      <h3>٣) مؤشرات الأداء</h3>
+      <div class="row">
+        <input id="fromDate" type="date"/><span class="chip">إلى</span><input id="toDate" type="date"/>
+        <button id="calc">حساب</button>
+      </div>
+      <div id="kpis" style="margin-top:8px"></div>
+      <p class="muted">يتم حساب المعدّل الموزون بناءً على أوزان المعايير وعدد الأيام المحددة.</p>
+    </section>
+
+    <!-- تلميحات -->
+    <section class="card">
+      <h3>٤) تلميحات الاستخدام</h3>
+      <ul>
+        <li>النوع <strong>تحقق/لم يتحقق</strong> يحسب كسلسلة التزام (Streak) متواصلة.</li>
+        <li>النوع <strong>درجة</strong> يُدخل من 0 إلى 10 ويحوَّل إلى نسبة.</li>
+        <li>يمكنك إنشاء معايير فرعية مثل “نظافة — ترتيب الغرفة”.</li>
+      </ul>
+    </section>
+
+  </div>
+</div>
+
+<script>
+const KEY="home_kids_kpi_v1";
+const todayStr = ()=> new Date().toISOString().slice(0,10);
+const id = ()=> Math.random().toString(36).slice(2,9);
+
+const state = {
+  children:["عمر","شهد","فارس"],
+  criteria:[
+    {id:id(),name:"النظافة",type:"bool",weight:2},
+    {id:id(),name:"العبادات",type:"bool",weight:3},
+    {id:id(),name:"الأخلاق",type:"bool",weight:2},
+  ],
+  entries:{} // entries[date][child][critId]= val
+};
+
+function load(){
+  try{
+    const raw=localStorage.getItem(KEY);
+    if(raw){
+      const s=JSON.parse(raw);
+      state.children=s.children||state.children;
+      state.criteria=s.criteria||state.criteria;
+      state.entries=s.entries||{};
+    }
+  }catch(e){console.warn(e)}
+}
+function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+
+/* DOM refs */
+const childName=document.getElementById('childName');
+const addChild=document.getElementById('addChild');
+const childrenTbody=document.querySelector('#childrenTable tbody');
+
+const critName=document.getElementById('critName');
+const critType=document.getElementById('critType');
+const critWeight=document.getElementById('critWeight');
+const addCrit=document.getElementById('addCrit');
+const criteriaTbody=document.querySelector('#criteriaTable tbody');
+
+const entryDate=document.getElementById('entryDate');
+const todayBtn=document.getElementById('todayBtn');
+const saveEntries=document.getElementById('saveEntries');
+const entriesZone=document.getElementById('entriesZone');
+const logDiv=document.getElementById('log');
+
+const fromDate=document.getElementById('fromDate');
+const toDate=document.getElementById('toDate');
+const calc=document.getElementById('calc');
+const kpis=document.getElementById('kpis');
+
+const resetAll=document.getElementById('resetAll');
+const exportCsv=document.getElementById('exportCsv');
+
+/* helpers */
+function ensureDate(d){
+  if(!state.entries[d]) state.entries[d]={};
+  state.children.forEach(c=>{ if(!state.entries[d][c]) state.entries[d][c]={}; });
+}
+function setTodayInputs(){
+  entryDate.value=todayStr();
+  fromDate.value=todayStr();
+  toDate.value=todayStr();
+}
+
+/* renderers */
+function renderChildren(){
+  childrenTbody.innerHTML="";
+  state.children.forEach((c,i)=>{
+    const tr=document.createElement('tr');
+
+    const td1=document.createElement('td');
+    const inp=document.createElement('input'); inp.value=c;
+    inp.onchange=()=>{ state.children[i]=inp.value.trim()||state.children[i]; save(); drawEntries(); };
+    td1.appendChild(inp);
+
+    const td2=document.createElement('td');
+    const del=document.createElement('button'); del.textContent="حذف"; del.className="secondary";
+    del.onclick=()=>{
+      const name=state.children[i];
+      // حذف قيم هذا الطفل من السجلات
+      Object.keys(state.entries).forEach(d=>{ delete state.entries[d][name]; });
+      state.children.splice(i,1); save();
+      renderChildren(); drawEntries(); drawLog();
+    };
+    td2.appendChild(del);
+
+    tr.appendChild(td1); tr.appendChild(td2);
+    childrenTbody.appendChild(tr);
+  });
+}
+
+function renderCriteria(){
+  criteriaTbody.innerHTML="";
+  state.criteria.forEach((cr,idx)=>{
+    const tr=document.createElement('tr');
+
+    const td1=document.createElement('td');
+    const nameInp=document.createElement('input'); nameInp.value=cr.name;
+    nameInp.onchange=()=>{ cr.name=nameInp.value.trim()||cr.name; save(); drawEntries(); };
+    td1.appendChild(nameInp);
+
+    const td2=document.createElement('td');
+    const typeSel=document.createElement('select');
+    typeSel.innerHTML=`<option value="bool">تحقق/لم يتحقق</option><option value="score">درجة من 10</option>`;
+    typeSel.value=cr.type;
+    typeSel.onchange=()=>{ cr.type=typeSel.value; save(); drawEntries(); };
+    td2.appendChild(typeSel);
+
+    const td3=document.createElement('td');
+    const w=document.createElement('input'); w.type="number"; w.min="1"; w.value=cr.weight;
+    w.onchange=()=>{ cr.weight=Math.max(1,Number(w.value||1)); save(); };
+    td3.appendChild(w);
+
+    const td4=document.createElement('td');
+    const del=document.createElement('button'); del.textContent="حذف"; del.className="secondary";
+    del.onclick=()=>{
+      const delId=cr.id;
+      state.criteria.splice(idx,1);
+      // إزالة قيم هذا المعيار من جميع الأيام
+      Object.values(state.entries).forEach(day=>{
+        Object.values(day).forEach(ch=>{ if(ch && delId in ch) delete ch[delId]; });
+      });
+      save(); renderCriteria(); drawEntries(); drawLog();
+    };
+    td4.appendChild(del);
+
+    tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); tr.appendChild(td4);
+    criteriaTbody.appendChild(tr);
+  });
+}
+
+function drawEntries(){
+  const d=entryDate.value||todayStr(); ensureDate(d);
+  entriesZone.innerHTML="";
+  state.children.forEach(c=>{
+    const box=document.createElement('div'); box.className="card"; box.style.padding="10px";
+    const h=document.createElement('h4'); h.textContent=`${c}`; box.appendChild(h);
+
+    state.criteria.forEach(cr=>{
+      const row=document.createElement('div'); row.className="row";
+      const label=document.createElement('div'); label.textContent=cr.name; label.className="pill";
+      row.appendChild(label);
+
+      let input;
+      if(cr.type==="bool"){
+        input=document.createElement('select');
+        input.innerHTML=`<option value="">—</option><option value="1">تحقق ✅</option><option value="0">لم يتحقق ❌</option>`;
+      }else{
+        input=document.createElement('input'); input.type="number"; input.min="0"; input.max="10"; input.placeholder="0-10";
+      }
+      const cur=state.entries[d][c][cr.id];
+      if(cur!==undefined) input.value=cur;
+
+      input.onchange=()=>{
+        const val=input.value;
+        if(val===""||val===null){ delete state.entries[d][c][cr.id]; }
+        else state.entries[d][c][cr.id]=(cr.type==="bool")?Number(val):Math.max(0,Math.min(10,Number(val)));
+        save(); drawLog();
+      };
+
+      row.appendChild(input);
+      box.appendChild(row);
+    });
+
+    entriesZone.appendChild(box);
+  });
+}
+
+function drawLog(){
+  const d=entryDate.value||todayStr();
+  const day=state.entries[d]||{};
+  let html=`<p class="muted">تاريخ: ${d}</p><table class="table"><thead><tr><th>طفل</th><th>المعيار</th><th>القيمة</th></tr></thead><tbody>`;
+  state.children.forEach(c=>{
+    const rec=day[c]||{};
+    state.criteria.forEach(cr=>{
+      const v=rec[cr.id];
+      if(v!==undefined){
+        const disp=cr.type==="bool"?(v==1?"تحقق ✅":"لم يتحقق ❌"):`${v}/10`;
+        html+=`<tr><td>${c}</td><td>${cr.name}</td><td>${disp}</td></tr>`;
+      }
+    });
+  });
+  html+=`</tbody></table>`;
+  logDiv.innerHTML=html;
+}
+
+/* KPIs + streaks */
+function computeScores(d1,d2){
+  const s=new Date(d1), e=new Date(d2);
+  const totalWeight=state.criteria.reduce((a,c)=>a+Number(c.weight||1),0)||1;
+  const agg={}; // child -> {sum:0, days:n}
+  const streaks={}; // child -> max streak per bool metric overall
+  state.children.forEach(c=>{ agg[c]={sum:0,days:0}; streaks[c]=0; });
+
+  for(let t=new Date(s); t<=e; t.setDate(t.getDate()+1)){
+    const key=t.toISOString().slice(0,10);
+    const day=state.entries[key]||{};
+    state.children.forEach(c=>{
+      let sum=0;
+      state.criteria.forEach(cr=>{
+        const v=day[c]?.[cr.id];
+        let pct=0;
+        if(v!==undefined){
+          pct = (cr.type==="bool") ? (v==1?1:0) : (Number(v)||0)/10;
+        }
+        sum += pct*(Number(cr.weight)||1);
+      });
+      const dayPct=sum/totalWeight; // 0..1
+      agg[c].sum += dayPct; agg[c].days += 1;
+    });
+  }
+
+  // streaks: احسب أطول سلسلة تحقق لكل طفل على كل المعايير البوليّة مجتمعة
+  state.children.forEach(c=>{
+    let best=0, cur=0;
+    for(let t=new Date(s); t<=e; t.setDate(t.getDate()+1)){
+      const key=t.toISOString().slice(0,10);
+      const day=state.entries[key]?.[c]||{};
+      // يوم ناجح إذا كل المعايير البوليّة المتوفرة فيه = 1 (أو لا توجد قيَم بوليّة ذلك اليوم)
+      const boolCriteria=state.criteria.filter(cr=>cr.type==="bool");
+      if(boolCriteria.length===0){ cur=0; continue; }
+      let hasAny=false, ok=true;
+      for(const cr of boolCriteria){
+        if(cr.id in day){ hasAny=true; if(day[cr.id]!=1) {ok=false;break;} }
+      }
+      if(hasAny && ok){ cur++; best=Math.max(best,cur); }
+      else { cur=0; }
+    }
+    streaks[c]=best;
+  });
+
+  const res={};
+  state.children.forEach(c=>{
+    const days = Math.max(1, agg[c].days);
+    res[c]={score: Math.round( (agg[c].sum/days)*100 ), streak: streaks[c]};
+  });
+  return res;
+}
+
+function drawKPIs(){
+  const d1=fromDate.value||todayStr();
+  const d2=toDate.value||todayStr();
+  const res=computeScores(d1,d2);
+  const ordered=Object.entries(res).sort((a,b)=>b[1].score-a[1].score);
+
+  let html=`<p class="muted">الفترة: ${d1} → ${d2}</p>`;
+  ordered.forEach(([child,info])=>{
+    html+=`
+      <div class="kpi-row">
+        <strong>${child}</strong>
+        <span class="pill">المعدل: ${info.score}%</span>
+        <span class="chip">Streak ✅: ${info.streak} يوم</span>
+      </div>
+      <div class="bar"><div style="width:${info.score}%"></div></div>
+    `;
+  });
+  kpis.innerHTML=html;
+}
+
+/* CSV export */
+function toCSV(){
+  const rows=[["date","child","criterion","type","weight","value"]];
+  Object.keys(state.entries).sort().forEach(d=>{
+    const day=state.entries[d];
+    Object.keys(day).forEach(child=>{
+      const rec=day[child];
+      state.criteria.forEach(cr=>{
+        const v=rec[cr.id];
+        if(v!==undefined){
+          rows.push([d,child,cr.name,cr.type,cr.weight,v]);
+        }
+      });
+    });
+  });
+  return rows.map(r=>r.map(x=>`"${String(x).replaceAll('"','""')}"`).join(",")).join("\n");
+}
+
+function download(name,content){
+  const blob=new Blob([content],{type:"text/csv;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download=name; a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+/* events */
+addChild.onclick=()=>{
+  const n=childName.value.trim(); if(!n) return;
+  state.children.push(n); save(); renderChildren(); drawEntries(); childName.value="";
+};
+addCrit.onclick=()=>{
+  const n=critName.value.trim(); if(!n) return;
+  state.criteria.push({id:id(), name:n, type:critType.value, weight:Math.max(1,Number(critWeight.value||1))});
+  save(); renderCriteria(); drawEntries(); critName.value=""; critWeight.value="1"; critType.value="bool";
+};
+todayBtn.onclick=()=>{ entryDate.value=todayStr(); drawEntries(); drawLog(); };
+saveEntries.onclick=()=>{ save(); drawLog(); alert("تم الحفظ ✅"); };
+calc.onclick=drawKPIs;
+resetAll.onclick=()=>{
+  if(confirm("سيتم مسح كل البيانات المحلية نهائيًا. متأكد؟")){ localStorage.removeItem(KEY); location.reload(); }
+};
+exportCsv.onclick=()=>{
+  const csv=toCSV(); download("kids-dashboard.csv", csv);
+};
+
+/* init */
+(function init(){
+  load(); setTodayInputs();
+  renderChildren(); renderCriteria(); drawEntries(); drawLog(); drawKPIs();
+})();
+</script>
+</body>
+</html>
