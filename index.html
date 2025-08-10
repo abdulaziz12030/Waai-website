@@ -31,20 +31,17 @@
 
     /* Hero */
     .hero{position:relative;color:#fff;min-height:58vh;display:grid;place-items:center}
-    /* ضع رابط البنر هنا 👇 */
     .hero::before{
       content:"";position:absolute;inset:0;
       background:
         linear-gradient(180deg,rgba(13,59,102,.25),rgba(13,59,102,.45)),
         url('https://i.postimg.cc/15g8vHVX/09382-A4-B-A991-47-E6-8-C0-F-8-FDAB08-C01-EA.png') center/cover no-repeat;
-      /* تحسين الظهور على الجوال */
       background-position:center 35%;
     }
     .hero .wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;padding:56px 18px;position:relative}
     .hero h1{font-size:clamp(26px,4.2vw,48px);line-height:1.25;margin:0 0 10px;font-weight:800}
     .hero p.lead{opacity:.95;margin:0 0 20px;font-weight:600}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-    /* أزرار شفافية أخف */
     .btn-ghost{
       background:rgba(13,59,102,.18);
       border:1px solid rgba(255,255,255,.35);
@@ -68,7 +65,7 @@
     .tag{display:inline-flex;align-items:center;gap:6px;background:var(--muted);color:#1b3956;padding:6px 10px;border-radius:999px;font-weight:700;font-size:.9rem}
     .actions{margin-top:auto;display:flex;gap:8px}
 
-    /* Stats (نُقلت لأسفل) */
+    /* Stats */
     .stats{max-width:1200px;margin:34px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 18px}
     .stat{background:rgba(255,255,255,.85);backdrop-filter:blur(4px);border:1px solid #e4eef7;border-radius:16px;box-shadow:var(--shadow);padding:18px;text-align:center}
     .kpi{font-size:clamp(26px,3.5vw,38px);font-weight:800;color:var(--acc)}
@@ -87,6 +84,9 @@
     .success{background:#e8fff7;color:#0a6b52;border:1px solid #baf0df}
     .error{background:#fff1f1;color:#8b1d1d;border:1px solid #f1cccc}
 
+    /* لجعل التمرير يقف تحت الهيدر عند القفز للنموذج */
+    #leadForm{scroll-margin-top:90px}
+
     /* Footer */
     footer{margin-top:56px;background:#0e3c67;color:#cfe3f8}
     footer .wrap{max-width:1200px;margin:auto;padding:22px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -94,7 +94,7 @@
     .foot-links a{color:#dce9f7}
     .credit{opacity:.85}
 
-    /* WhatsApp & ToTop (شفافية أخف) */
+    /* WhatsApp & ToTop */
     .wa{position:fixed;inset:auto 16px 16px auto;z-index:70}
     .wa a{display:grid;place-items:center;width:58px;height:58px;border-radius:18px;background:rgba(37,211,102,.9);box-shadow:0 12px 30px rgba(12,151,79,.28)}
     .wa svg{width:30px;height:30px;fill:#fff}
@@ -117,7 +117,6 @@
       .links{display:none}
       .grid{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
-      /* تركيز أفضل للصورة على الجوال */
       .hero::before{background-position:center 45%}
     }
   </style>
@@ -136,7 +135,8 @@
         <a href="#impact">أثرنا</a>
         <a href="#contact">تواصل</a>
       </nav>
-      <a href="#contact" class="btn btn-outline">اطلب استشارة</a>
+      <!-- يوجّه مباشرة للنموذج -->
+      <a href="#leadForm" class="btn btn-outline">اطلب استشارة</a>
     </div>
   </header>
 
@@ -148,9 +148,11 @@
         <p class="lead">استشارات، لوحات متابعة، حوكمة، ومحتوى إداري يعزز أداء منظمتك — بهوية سعودية حديثة.</p>
         <div class="hero-actions">
           <a href="#services" class="btn btn-ghost">استعرض خدماتنا</a>
-          <a href="#contact" class="btn btn-ghost">اطلب استشارة الآن</a>
+          <!-- يوجّه مباشرة للنموذج -->
+          <a href="#leadForm" class="btn btn-ghost">اطلب استشارة الآن</a>
         </div>
       </div>
+    </div>
   </section>
 
   <!-- Services -->
@@ -168,7 +170,7 @@
           <h3>الحوكمة وبناء الأطر</h3>
           <div class="tag">سياسات & إجراءات</div>
           <p>أدلة وسياسات ومصفوفة صلاحيات تعزز الانضباط والوضوح المؤسسي.</p>
-          <div class="actions"><a href="#contact" class="btn">اطلب الخدمة</a></div>
+          <div class="actions"><a href="#leadForm" class="btn">اطلب الخدمة</a></div>
         </div>
       </article>
 
@@ -181,7 +183,7 @@
           <h3>لوحات متابعة تفاعلية</h3>
           <div class="tag">KPI Dashboards</div>
           <p>تصميم وربط لوحات قياس لصنّاع القرار، مع تقارير تنفيذ تُظهر التقدم.</p>
-          <div class="actions"><a href="#contact" class="btn">اطلب الخدمة</a></div>
+          <div class="actions"><a href="#leadForm" class="btn">اطلب الخدمة</a></div>
         </div>
       </article>
 
@@ -194,13 +196,13 @@
           <h3>الخطط التشغيلية</h3>
           <div class="tag">من الإستراتيجية للتنفيذ</div>
           <p>تحويل الأهداف إلى مبادرات ومؤشرات وجدولة تفصيلية قابلة للقياس.</p>
-          <div class="actions"><a href="#contact" class="btn">اطلب الخدمة</a></div>
+          <div class="actions"><a href="#leadForm" class="btn">اطلب الخدمة</a></div>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- Stats (مُنقل لأسفل) -->
+  <!-- Stats -->
   <section class="section" id="numbers">
     <h2 class="reveal">أرقام تُثبت الأثر</h2>
     <div class="stats">
@@ -244,7 +246,7 @@
         <h3 style="margin-top:0">نموذج طلب خدمة</h3>
         <form id="leadForm" class="lead-form" onsubmit="return submitLead(event)"
               data-endpoint="https://formspree.io/f/xdkdynbr">
-          <div class="inp"><label>الاسم الكامل</label><input name="name" type="text" required placeholder="الاسم"></div>
+          <div class="inp"><label>الاسم الكامل</label><input id="nameField" name="name" type="text" required placeholder="الاسم"></div>
           <div class="inp"><label>البريد الإلكتروني</label><input name="email" type="email" required placeholder="example@email.com"></div>
           <div class="inp"><label>رقم الجوال</label><input name="phone" type="tel" placeholder="05xxxxxxxx" inputmode="tel"></div>
           <div class="inp">
@@ -361,6 +363,16 @@
       finally{ if(btn){ btn.disabled=false; btn.textContent='إرسال الطلب'; } }
       return false;
     }
+
+    // تركيز المؤشر تلقائياً عند القفز للنموذج
+    function focusLead(){
+      const name = document.getElementById('nameField');
+      if(name) name.focus();
+    }
+    document.querySelectorAll('a[href="#leadForm"]').forEach(a=>{
+      a.addEventListener('click', ()=> setTimeout(focusLead, 350));
+    });
+    if(location.hash === '#leadForm'){ setTimeout(focusLead, 350); }
   </script>
 </body>
 </html>
