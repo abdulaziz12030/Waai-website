@@ -12,6 +12,8 @@
       --bg:#0d3b66; --bg2:#0f4c81; --acc:#2ec4b6;
       --muted:#e6eef6; --text:#0f2640; --white:#fff;
       --shadow:0 10px 25px rgba(13,59,102,.12); --r:18px;
+      --green:#16a34a;
+      --hero-img: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2000&auto=format&fit=crop'); /* نفس البنر السابق */
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;font-family:'Cairo',system-ui,-apple-system,sans-serif;color:var(--text);scroll-behavior:smooth;background:linear-gradient(180deg,#f7fbff,#f3f7fc 35%,#f8fbff)}
@@ -31,31 +33,30 @@
     .btn-cta{background:linear-gradient(135deg,var(--bg),var(--bg2));}
 
     /* Hero */
-    .hero{position:relative;color:#fff;background:linear-gradient(180deg,#0d3b66 0%,#0f4c81 60%,#0f4c81 100%);}
-    /* نستخدم صورتك مع بديل احتياطي */
+    .hero{position:relative;color:#fff;background:#0f4c81}
     .hero::before{
-      content:"";position:absolute;inset:0;
+      content:"";position:absolute;inset:0; z-index:0;
       background:
-        url('https://i.postimg.cc/wBS2HpRt/43-CB27-F7-FBA2-4537-A6-DE-10-DC3091-B689.png') center/cover no-repeat,
-        url('https://images.unsplash.com/photo-1517263904808-5dc91e3e7044?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
-      opacity:.28;
+        linear-gradient(180deg,rgba(13,59,102,.85) 0%,rgba(13,59,102,.75) 35%,rgba(13,59,102,.6) 100%),
+        var(--hero-img) center/cover no-repeat;
     }
-    .hero .wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr;gap:16px;padding:56px 18px 18px;position:relative}
-    .hero h1{font-size:clamp(26px,4.2vw,48px);line-height:1.25;margin:0 0 10px;font-weight:800}
-    .hero p.lead{opacity:.95;margin:0 0 20px;font-weight:600}
+    .hero > * { position: relative; z-index: 1; }
+    .hero .wrap{max-width:1200px;margin:auto;display:block;padding:56px 18px 18px;position:relative}
+    .hero h1{font-size:clamp(26px,4.2vw,48px);line-height:1.25;margin:0 0 10px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+    .hero p.lead{opacity:.98;margin:0 0 20px;font-weight:600;text-shadow:0 2px 6px rgba(0,0,0,.35)}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
 
-    /* Stats overlay on hero */
-    .stats{max-width:1200px;margin:18px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 18px;position:relative}
+    /* Stats overlay on hero (شفافة + ضبابية) */
+    .stats{max-width:1200px;margin:18px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 18px;position:relative;z-index:1}
     .stat{
       background:rgba(255,255,255,0.06);
       border:1px solid rgba(255,255,255,0.18);
       border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.12);
       padding:18px;text-align:center;backdrop-filter: blur(6px);
     }
-    .hero .stat p{margin:6px 0 0;font-weight:700;color:#fff}
-    .kpi{font-size:clamp(26px,3.5vw,38px);font-weight:800;color:var(--acc)}
-    .kpi small{font-size:.55em;color:var(--acc)}
+    .kpi{font-size:clamp(26px,3.5vw,38px);font-weight:800;color:var(--green);text-shadow:0 2px 6px rgba(0,0,0,.25)}
+    .kpi small{font-size:.55em;color:var(--green)}
+    .stat p{margin:6px 0 0;font-weight:700;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.35)}
 
     /* Sections */
     .section{max-width:1200px;margin:54px auto;padding:0 18px}
@@ -80,6 +81,7 @@
     .bar>span{display:block;height:100%;background:linear-gradient(90deg,#2ec4b6,#0f4c81)}
     .quote{background:#0f4c81;color:#eaf4ff;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
     .quote small{opacity:.9}
+    .quote .kpi .counter, .quote .kpi small{color:var(--green)}
 
     /* Contact */
     .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}
@@ -92,11 +94,6 @@
     .success,.error{display:none;margin-top:8px;padding:10px 12px;border-radius:10px;font-weight:700}
     .success{background:#e8fff7;color:#0a6b52;border:1px solid #baf0df}
     .error{background:#fff1f1;color:#8b1d1d;border:1px solid #f1cccc}
-
-    /* Contact portrait (طولية) */
-    .portrait{border-radius:14px;overflow:hidden;box-shadow:var(--shadow);height:100%}
-    .portrait figure{height:100%;display:block}
-    .portrait img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
 
     /* Footer */
     footer{margin-top:56px;background:#0e3c67;color:#cfe3f8}
@@ -122,17 +119,19 @@
     }
     #toTop:hover{background:rgba(13,59,102,1)}
 
+    /* Portrait (الصورة الطولية كما كانت) */
+    .portrait {
+      width: 100%;
+      height: clamp(520px, 70vh, 900px);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      background: center / cover no-repeat;
+      background-position: 50% 25%;
+    }
+
     /* Reveal */
     .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
     .reveal.show{opacity:1;transform:none}
-    .float{animation:float 7s ease-in-out infinite}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-
-    /* Thank You overlay */
-    .thanks{position:fixed;inset:0;background:rgba(13,59,102,.9);color:#fff;display:none;align-items:center;justify-content:center;z-index:80}
-    .thanks .box{max-width:620px;margin:0 18px;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.35);text-align:center}
-    .thanks h2{margin:0 0 8px}
-    .thanks p{opacity:.95}
 
     /* Responsive */
     @media (max-width:1024px){
@@ -140,13 +139,11 @@
       .grid{grid-template-columns:repeat(2,1fr)}
       .stats{grid-template-columns:repeat(2,1fr)}
       .impact-grid{grid-template-columns:1fr}
-      .portrait img{object-position:center 25%}
     }
     @media (max-width:640px){
       .links{display:none}
       .grid{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
-      .portrait img{object-position:center 30%}
     }
   </style>
 </head>
@@ -181,7 +178,7 @@
       </div>
     </div>
 
-    <!-- Stats overlay -->
+    <!-- Stats overlay (شفافة فوق البنر) -->
     <div class="stats" id="numbers">
       <div class="stat reveal">
         <div class="kpi"><span class="counter" data-target="15">0</span><small>+</small></div>
@@ -210,7 +207,9 @@
     <div class="grid">
       <article class="card reveal">
         <figure>
-          <img alt="الحوكمة السعودية" src="https://images.unsplash.com/photo-1634942537035-3bb6b52ca457?q=80&w=1600&auto=format&fit=crop">
+          <img alt="الحوكمة وبناء الأطر"
+               src="https://images.unsplash.com/photo-1581091215367-59ab6b92da7c?q=80&w=1600&auto=format&fit=crop"
+               onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop';">
         </figure>
         <div class="content">
           <h3>الحوكمة وبناء الأطر</h3>
@@ -222,7 +221,8 @@
 
       <article class="card reveal">
         <figure>
-          <img alt="لوحات متابعة تفاعلية" src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop">
+          <img alt="لوحات متابعة تفاعلية" src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop"
+               onerror="this.src='https://images.unsplash.com/photo-1600880292089-90e7e86ef3c9?q=80&w=1600&auto=format&fit=crop'">
         </figure>
         <div class="content">
           <h3>لوحات متابعة تفاعلية</h3>
@@ -234,7 +234,8 @@
 
       <article class="card reveal">
         <figure>
-          <img alt="الخطط التشغيلية" src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=1600&auto=format&fit=crop">
+          <img alt="الخطط التشغيلية" src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=1600&auto=format&fit=crop"
+               onerror="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop'">
         </figure>
         <div class="content">
           <h3>الخطط التشغيلية</h3>
@@ -314,12 +315,6 @@
           <li>البريد: <strong>abdulaziz.algharawi@gmail.com</strong></li>
           <li>سناب/تيك توك/إنستغرام: <strong>@waai.sa</strong></li>
         </ul>
-        <div class="portrait">
-          <figure>
-            <!-- صورة طولية احترافية -->
-            <img alt="مديرة أعمال سعودية" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop">
-          </figure>
-        </div>
       </div>
 
       <div class="panel reveal">
@@ -349,6 +344,13 @@
     </div>
   </section>
 
+  <!-- الصورة الطولية المسترجعة -->
+  <div class="section" style="max-width:1200px;margin:18px auto 0;padding:0 18px">
+    <div class="portrait" role="img" aria-label="مديرة أعمال سعودية محترفة"
+         style="background-image:url('https://i.postimg.cc/wBS2HpRt/43-CB27-F7-FBA2-4537-A6-DE-10-DC3091-B689.png');">
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div class="wrap">
@@ -364,7 +366,7 @@
   <!-- WhatsApp Floating -->
   <div class="wa">
     <a aria-label="تواصل واتساب" href="https://wa.me/966552794082" target="_blank" rel="noopener">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.52c-.28-.14-1.65-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.74.9-.9 1.08-.17.19-.34.21-.62.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.29-.02-.45.12-.59.12-.12.28-.31.42-.46.14-.16.19-.27.28-.46.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.1-.23-.55-.47-.47-.64-.48l-.54-.01c-.19 0-.49.07-.75.35-.26.27-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.12.55-.08 1.65-.67 1.88-1.31.23-.65.23-1.2.16-1.31-.07-.12-.26-.19-.55-.33zM26.67 5.33C23.87 2.53 20.17 1 16.27 1 8.41 1 2 7.41 2 15.27c0 2.5.66 4.93 1.91 7.07L2 31l8.86-1.86c2.09 1.14 4.45 1.74 6.88 1.74h.01c7.86 0 14.27-6.41 14.27-14.27.01-3.9-1.52-7.6-4.35-10.41z"/></svg>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.52c-.28-.14-1.65-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.74.9-.9 1.08-.17.19-.34.21-.62.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.29-.02-.45.12-.59.12-.12.28-.31.42-.46.14-.16.19-.27.28-.46.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.1-.23-.55-.47-.47-.64-.48l-.54-.01c-.19 0-.49 .07-.75 .35-.26 .27-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .14 .19 2.03 3.1 4.92 4.35 .69 .3 1.23 .48 1.65 .61 .69 .22 1.31 .19 1.8 .12 .55-.08 1.65-.67 1.88-1.31 .23-.65 .23-1.2 .16-1.31 -.07-.12 -.26 -.19 -.55 -.33zM26.67 5.33C23.87 2.53 20.17 1 16.27 1 8.41 1 2 7.41 2 15.27c0 2.5 .66 4.93 1.91 7.07L2 31 l8.86 -1.86 c2.09 1.14 4.45 1.74 6.88 1.74 h .01 c7.86 0 14.27 -6.41 14.27 -14.27 .01 -3.9 -1.52 -7.6 -4.35 -10.41z"/></svg>
     </a>
   </div>
 
@@ -372,8 +374,8 @@
   <button id="toTop" aria-label="العودة للأعلى">↑</button>
 
   <!-- Thank You -->
-  <div id="thanks" class="thanks" aria-hidden="true">
-    <div class="box">
+  <div id="thanks" class="thanks" aria-hidden="true" style="display:none;position:fixed;inset:0;background:rgba(13,59,102,.9);color:#fff;align-items:center;justify-content:center;z-index:80">
+    <div class="box" style="max-width:620px;margin:0 18px;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.35);text-align:center">
       <h2>شكرًا! 🎉</h2>
       <p>وصل طلبك بنجاح إلى <strong>abdulaziz.algharawi@gmail.com</strong> وسنتواصل معك قريبًا.</p>
       <div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
@@ -384,6 +386,17 @@
   </div>
 
   <script>
+    // إعادة تأكيد صورة البنر كما كانت + بديل فقط لو تعذر
+    (function(){
+      const HERO_PRIMARY = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2000&auto=format&fit=crop';
+      const HERO_FALLBACK = 'https://images.unsplash.com/photo-1560264280-88b68371db39?q=80&w=2000&auto=format&fit=crop';
+      const test = new Image();
+      test.onload = () => document.documentElement.style.setProperty('--hero-img', `url('${HERO_PRIMARY}')`);
+      test.onerror = () => document.documentElement.style.setProperty('--hero-img', `url('${HERO_FALLBACK}')`);
+      test.src = HERO_PRIMARY;
+      document.documentElement.style.setProperty('--hero-img', `url('${HERO_PRIMARY}')`);
+    })();
+
     // Scroll reveal + counters
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
