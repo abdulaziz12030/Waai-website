@@ -12,7 +12,7 @@
       --bg:#0d3b66; --bg2:#0f4c81; --acc:#2ec4b6;
       --muted:#e6eef6; --text:#0f2640; --white:#fff;
       --shadow:0 10px 25px rgba(13,59,102,.12); --r:18px;
-      --green:#16a34a;
+      --kpi-green:#2ec4b6;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;font-family:'Cairo',system-ui,-apple-system,sans-serif;color:var(--text);scroll-behavior:smooth;background:linear-gradient(180deg,#f7fbff,#f3f7fc 35%,#f8fbff)}
@@ -31,27 +31,39 @@
     .btn-outline{background:#fff;color:var(--bg);border:2px solid var(--bg)}
     .btn-cta{background:linear-gradient(135deg,var(--bg),var(--bg2));}
 
-    /* Hero (عمود واحد + خلفية بنر) */
-    .hero{position:relative;color:#fff;background:linear-gradient(180deg,#0d3b66 0%,#0f4c81 60%,#0f4c81 100%);}
+    /* Hero – full width (no side card) */
+    .hero{position:relative;color:#fff;background:#0f4c81}
     .hero::before{
       content:"";position:absolute;inset:0;
-      background:url('https://images.unsplash.com/photo-1585503418537-88331351ad99?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
-      opacity:.18
+      background:
+        linear-gradient(180deg,rgba(13,59,102,.85) 0%,rgba(13,59,102,.75) 35%,rgba(13,59,102,.6) 100%),
+        url('https://i.postimg.cc/bJg0kTnH/950-CE200-F226-4340-B438-AB91664-C9-FA5.jpg') center/cover no-repeat;
     }
-    .hero .wrap{max-width:1200px;margin:auto;display:block;padding:56px 18px 28px;position:relative}
-    .hero h1{font-size:clamp(26px,4.2vw,48px);line-height:1.25;margin:0 0 10px;font-weight:800}
-    .hero p.lead{opacity:.95;margin:0 0 20px;font-weight:600}
+    .hero .wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr;gap:20px;padding:64px 18px 40px;position:relative}
+    .hero h1{font-size:clamp(28px,4.4vw,54px);line-height:1.25;margin:0 0 12px;font-weight:800}
+    .hero p.lead{opacity:.98;margin:0 0 22px;font-weight:600}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
 
     /* Stats */
-    .stats{max-width:1200px;margin:34px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 18px}
+    .stats{max-width:1200px;margin:24px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 18px}
     .stat{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:18px;text-align:center}
     .kpi{font-size:clamp(26px,3.5vw,38px);font-weight:800;color:var(--bg)}
     .kpi small{font-size:.55em;color:#5b7a99}
     .stat p{margin:6px 0 0;font-weight:700;color:#355a7e}
-    /* تلوين خاص لرضا العملاء وتسريع القرار */
-    .quote .kpi.green .counter,
-    .quote .kpi.green small{color:var(--green)}
+    /* اجعل لون نسبة "رضا العملاء" و "تسريع اتخاذ القرار" أخضر */
+    .quote .kpi, .kpi.kpi-green { color: var(--kpi-green) }
+
+    /* Sections / Cards */
+    .section{max-width:1200px;margin:54px auto;padding:0 18px}
+    .section h2{font-size:clamp(22px,3vw,32px);margin:0 0 14px;font-weight:800;color:var(--bg)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+    .card figure{aspect-ratio:16/9;overflow:hidden}
+    .card figure img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+    .card:hover figure img{transform:scale(1.12)}
+    .card .content{padding:16px;display:flex;flex-direction:column;gap:8px}
+    .tag{display:inline-flex;align-items:center;gap:6px;background:var(--muted);color:#1b3956;padding:6px 10px;border-radius:999px;font-weight:700;font-size:.9rem}
+    .actions{margin-top:auto;display:flex;gap:8px}
 
     /* Impact (أثرنا) */
     .impact{max-width:1200px;margin:54px auto;padding:0 18px}
@@ -64,18 +76,6 @@
     .bar>span{display:block;height:100%;background:linear-gradient(90deg,#2ec4b6,#0f4c81)}
     .quote{background:#0f4c81;color:#eaf4ff;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
     .quote small{opacity:.9}
-
-    /* Sections */
-    .section{max-width:1200px;margin:54px auto;padding:0 18px}
-    .section h2{font-size:clamp(22px,3vw,32px);margin:0 0 14px;font-weight:800;color:var(--bg)}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .card{background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
-    .card figure{aspect-ratio:16/9;overflow:hidden}
-    .card figure img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform .6s cubic-bezier(.2,.7,.3,1)}
-    .card:hover figure img{transform:scale(1.12)}
-    .card .content{padding:16px;display:flex;flex-direction:column;gap:8px}
-    .tag{display:inline-flex;align-items:center;gap:6px;background:var(--muted);color:#1b3956;padding:6px 10px;border-radius:999px;font-weight:700;font-size:.9rem}
-    .actions{margin-top:auto;display:flex;gap:8px}
 
     /* Contact */
     .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}
@@ -114,30 +114,9 @@
     .thanks h2{margin:0 0 8px}
     .thanks p{opacity:.95}
 
-    /* Portrait in contact (full, responsive) */
-    .portrait {
-      width: 100%;
-      height: clamp(520px, 70vh, 900px);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      background: center / cover no-repeat;
-      background-position: 50% 25%;
-    }
-    @media (min-width:1024px){ .portrait{ height: min(82vh,980px); } }
-    @media (max-width:640px){ .portrait{ height: 520px; } }
-
     /* Responsive */
-    @media (max-width:1024px){
-      .contact{grid-template-columns:1fr}
-      .grid{grid-template-columns:repeat(2,1fr)}
-      .stats{grid-template-columns:repeat(2,1fr)}
-      .impact-grid{grid-template-columns:1fr}
-    }
-    @media (max-width:640px){
-      .links{display:none}
-      .grid{grid-template-columns:1fr}
-      .stats{grid-template-columns:1fr}
-    }
+    @media (max-width:1024px){.contact{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.impact-grid{grid-template-columns:1fr}}
+    @media (max-width:640px){.links{display:none}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
   </style>
 </head>
 <body id="top">
@@ -158,7 +137,7 @@
     </div>
   </header>
 
-  <!-- Hero (بدون صورة البطاقة اليسار) -->
+  <!-- Hero (no side image) -->
   <section class="hero">
     <div class="wrap">
       <div class="reveal">
@@ -178,12 +157,12 @@
         <p>جهة مستفيدة</p>
       </div>
       <div class="stat reveal">
-        <div class="kpi"><span class="counter" data-target="85">0</span><small>%</small></div>
-        <p>تحسن في سرعة التقارير</p>
-      </div>
-      <div class="stat reveal">
         <div class="kpi"><span class="counter" data-target="40">0</span></div>
         <p>لوحة متابعة مُنفّذة</p>
+      </div>
+      <div class="stat reveal">
+        <div class="kpi"><span class="counter" data-target="85">0</span><small>%</small></div>
+        <p>تحسن في سرعة التقارير</p>
       </div>
       <div class="stat reveal">
         <div class="kpi"><span class="counter" data-target="15">0</span><small>+</small></div>
@@ -200,22 +179,19 @@
     <div class="grid">
       <article class="card reveal">
         <figure>
-          <img alt="الحوكمة وبناء الأطر"
-               src="https://images.unsplash.com/photo-1581091215367-59ab6b92da7c?q=80&w=1600&auto=format&fit=crop"
-               onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop';">
+          <img alt="الخطط التشغيلية" src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=1600&auto=format&fit=crop">
         </figure>
         <div class="content">
-          <h3>الحوكمة وبناء الأطر</h3>
-          <div class="tag">سياسات & إجراءات</div>
-          <p>أدلة وسياسات ومنظومات صلاحيات تعزز الانضباط والوضوح المؤسسي.</p>
+          <h3>الخطط التشغيلية</h3>
+          <div class="tag">من الإستراتيجية للتنفيذ</div>
+          <p>تحويل الأهداف إلى مبادرات ومؤشرات وجدولة تفصيلية قابلة للقياس.</p>
           <div class="actions"><a href="#contact" class="btn">اطلب الخدمة</a></div>
         </div>
       </article>
 
       <article class="card reveal">
         <figure>
-          <img alt="لوحات متابعة سعودية" src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop"
-               onerror="this.src='https://images.unsplash.com/photo-1600880292089-90e7e86ef3c9?q=80&w=1600&auto=format&fit=crop'">
+          <img alt="لوحات متابعة تفاعلية" src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop">
         </figure>
         <div class="content">
           <h3>لوحات متابعة تفاعلية</h3>
@@ -227,13 +203,12 @@
 
       <article class="card reveal">
         <figure>
-          <img alt="خطط تشغيلية" src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=1600&auto=format&fit=crop"
-               onerror="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop'">
+          <img alt="الحوكمة وبناء الأطر" src="https://images.unsplash.com/photo-1634942537035-3bb6b52ca457?q=80&w=1600&auto=format&fit=crop">
         </figure>
         <div class="content">
-          <h3>الخطط التشغيلية</h3>
-          <div class="tag">من الإستراتيجية للتنفيذ</div>
-          <p>تحويل الأهداف إلى مبادرات ومؤشرات وجدولة تفصيلية قابلة للقياس.</p>
+          <h3>الحوكمة وبناء الأطر</h3>
+          <div class="tag">سياسات & إجراءات</div>
+          <p>أدلة وسياسات ومنظومات صلاحيات تعزز الانضباط والوضوح المؤسسي.</p>
           <div class="actions"><a href="#contact" class="btn">اطلب الخدمة</a></div>
         </div>
       </article>
@@ -284,11 +259,11 @@
         <hr style="border-color:rgba(255,255,255,.2)">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <div>
-            <div class="kpi green"><span class="counter" data-target="92">0</span><small>%</small></div>
+            <div class="kpi kpi-green"><span class="counter" data-target="92">0</span><small>%</small></div>
             <div>رضا العملاء</div>
           </div>
           <div>
-            <div class="kpi green"><span class="counter" data-target="65">0</span><small>%</small></div>
+            <div class="kpi kpi-green"><span class="counter" data-target="65">0</span><small>%</small></div>
             <div>تسريع اتخاذ القرار</div>
           </div>
         </div>
@@ -302,12 +277,12 @@
     <div class="contact">
       <div class="panel reveal">
         <h3 style="margin-top:0">تعرف علينا أكثر</h3>
-        <p>نساعدك على ترتيب الفوضى التشغيلية وتحويلها إلى نتائج قابلة للقياس عبر أدوات تنفيذ ذكية وهوية سعودية معاصرة.</p>
         <ul style="line-height:2">
           <li>الرياض – المملكة العربية السعودية</li>
           <li>البريد: <strong>abdulaziz.algharawi@gmail.com</strong></li>
           <li>سناب/تيك توك/إنستغرام: <strong>@waai.sa</strong></li>
         </ul>
+        <p>نساعدك على ترتيب الفوضى التشغيلية وتحويلها إلى نتائج قابلة للقياس عبر أدوات تنفيذ ذكية وهوية سعودية معاصرة.</p>
       </div>
 
       <div class="panel reveal">
@@ -335,14 +310,13 @@
         </form>
       </div>
     </div>
-  </section>
 
-  <!-- الصورة الطولية (كتلة خلفية) -->
-  <div class="section" style="max-width:1200px;margin:18px auto 0;padding:0 18px">
-    <div class="portrait" role="img" aria-label="مديرة أعمال سعودية محترفة"
-         style="background-image:url('https://i.postimg.cc/wBS2HpRt/43-CB27-F7-FBA2-4537-A6-DE-10-DC3091-B689.png');">
+    <!-- الصورة الطولية (يمين القسم) -->
+    <div class="section" style="max-width:1200px;margin:18px auto 0;padding:0 18px">
+      <img src="https://i.postimg.cc/wBS2HpRt/43-CB27-F7-FBA2-4537-A6-DE-10-DC3091-B689.png"
+           alt="مديرة أعمال سعودية" style="width:100%;max-height:680px;object-fit:cover;border-radius:16px;box-shadow:var(--shadow)">
     </div>
-  </div>
+  </section>
 
   <!-- Footer -->
   <footer>
@@ -366,7 +340,7 @@
   <!-- Back to top -->
   <button id="toTop" aria-label="العودة للأعلى">↑</button>
 
-  <!-- Thank You overlay -->
+  <!-- Thank You (صفحة شكر داخلية) -->
   <div id="thanks" class="thanks" aria-hidden="true">
     <div class="box">
       <h2>شكرًا! 🎉</h2>
