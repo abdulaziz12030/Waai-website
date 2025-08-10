@@ -399,18 +399,32 @@
     },{threshold:.2});
     document.querySelectorAll('.reveal, .stat, .impact .panel, .impact .quote').forEach(el=>io.observe(el));
 
-    function startCounters(scope){
-      scope.querySelectorAll('.counter').forEach(el=>{
-        const target = +el.dataset.target; const dur = 1400 + Math.random()*800;
-        const start = performance.now();
-        function tick(t){
-          const p = Math.min(1,(t-start)/dur);
-          el.textContent = Math.floor(target*p).toLocaleString('en-US');
-          if(p<1) requestAnimationFrame(tick);
-        }
+    <script>
+// ...
+function startCounters(scope){
+  scope.querySelectorAll('.counter').forEach(el=>{
+    if (el.dataset.done === '1') return;   // لا تعيد العد إذا انتهى سابقًا
+    const target = Number(el.dataset.target || 0);
+    const dur = 1400 + Math.random()*800;
+    const start = performance.now();
+
+    function tick(t){
+      const p = Math.min(1,(t-start)/dur);
+      const val = Math.floor(target * p);
+      // اكتب الرقم دائمًا كـ نص واضح
+      el.textContent = val.toLocaleString('en-US');
+      if(p < 1){
         requestAnimationFrame(tick);
-      });
+      } else {
+        // ثبّت القيمة النهائية مرة أخيرة
+        el.textContent = target.toLocaleString('en-US');
+        el.dataset.done = '1';
+      }
     }
+    requestAnimationFrame(tick);
+  });
+}
+</script>
 
     // Back to top
     const toTop = document.getElementById('toTop');
