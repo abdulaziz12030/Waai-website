@@ -7,11 +7,11 @@
 <meta name="description" content="منصة واعي للاستشارات الإدارية والحلول الرقمية: لوحات متابعة، الحوكمة، الخطط التشغيلية، ومواقع تعريفية.">
 <meta name="theme-color" content="#0d3b66">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style> <div class="news-ticker" role="status" aria-label="إشعار">
-  <div class="inner">
-    <span>🚀 قريبًا الإطلاق الرسمي لمنصة واعي | حلول إدارية واستشارات احترافية</span>
-  </div>
-</div>
+  <style> /* News Ticker */
+.news-ticker{position:sticky;top:0;z-index:90;background:#0d3b66;color:#fff}
+.news-ticker .inner{max-width:1200px;margin:auto;padding:8px 18px;overflow:hidden;white-space:nowrap}
+.news-ticker .inner span{display:inline-block;animation:ticker 18s linear infinite}
+@keyframes ticker{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
     :root{
       /* News Ticker */
 .news-ticker{position:sticky;top:0;z-index:80;background:#0d3b66;color:#fff}
@@ -132,7 +132,11 @@
   </style>
 </head>
 <body id="top">
-
+<div class="news-ticker" role="status" aria-label="إشعار">
+  <div class="inner">
+    <span>🚀 قريبًا | الإطلاق الرسمي لمنصة واعي | حلول إدارية واستشارات احترافية</span>
+  </div>
+</div>
   <!-- Header -->
 <header class="nav">
   <div class="wrap">
