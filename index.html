@@ -35,19 +35,19 @@
     /* Hero */
     .hero{position:relative;color:#fff;background:#0f4c81}
     .hero::before{
-      content:"";position:absolute;inset:0;
+      content:"";position:absolute;inset:0; z-index:0;
       background:
         linear-gradient(180deg,rgba(13,59,102,.85) 0%,rgba(13,59,102,.75) 35%,rgba(13,59,102,.6) 100%),
         var(--hero-img) center/cover no-repeat;
     }
+    /* ضمان أن محتوى الهيرو وفوقه الأرقام دائمًا فوق الخلفية */
+    .hero > * { position: relative; z-index: 1; }
+    .hero .stats { position: relative; z-index: 1; }
+
     .hero .wrap{max-width:1200px;margin:auto;display:block;padding:56px 18px 28px;position:relative}
     .hero h1{font-size:clamp(26px,4.2vw,48px);line-height:1.25;margin:0 0 10px;font-weight:800}
     .hero p.lead{opacity:.95;margin:0 0 20px;font-weight:600}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-/* تأكد أن محتوى الهيرو والأرقام فوق طبقة الخلفية */
-.hero > * { position: relative; z-index: 1; }
-/* ولو حاب تأكيد إضافي للـ stats داخل الهيرو */
-.hero .stats { position: relative; z-index: 1; }
 
     /* Stats */
     .stats{max-width:1200px;margin:34px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 18px}
@@ -375,7 +375,7 @@
   </div>
 
   <script>
-    // ===== Hero fallback loader (يعيد البنر لو تعطل الرابط الأول) =====
+    // ===== Hero fallback loader =====
     (function(){
       const HERO_PRIMARY = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2000&auto=format&fit=crop';
       const HERO_FALLBACK = 'https://images.unsplash.com/photo-1560264280-88b68371db39?q=80&w=2000&auto=format&fit=crop';
@@ -383,11 +383,10 @@
       test.onload = () => document.documentElement.style.setProperty('--hero-img', `url('${HERO_PRIMARY}')`);
       test.onerror = () => document.documentElement.style.setProperty('--hero-img', `url('${HERO_FALLBACK}')`);
       test.src = HERO_PRIMARY;
-      // تعيين مبدئي لمنع وميض
       document.documentElement.style.setProperty('--hero-img', `url('${HERO_PRIMARY}')`);
     })();
 
-    // ===== Scroll reveal + counters =====
+    // ===== Scroll reveal + counters (محسّنة) =====
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -399,32 +398,26 @@
     },{threshold:.2});
     document.querySelectorAll('.reveal, .stat, .impact .panel, .impact .quote').forEach(el=>io.observe(el));
 
-    <script>
-// ...
-function startCounters(scope){
-  scope.querySelectorAll('.counter').forEach(el=>{
-    if (el.dataset.done === '1') return;   // لا تعيد العد إذا انتهى سابقًا
-    const target = Number(el.dataset.target || 0);
-    const dur = 1400 + Math.random()*800;
-    const start = performance.now();
-
-    function tick(t){
-      const p = Math.min(1,(t-start)/dur);
-      const val = Math.floor(target * p);
-      // اكتب الرقم دائمًا كـ نص واضح
-      el.textContent = val.toLocaleString('en-US');
-      if(p < 1){
+    function startCounters(scope){
+      scope.querySelectorAll('.counter').forEach(el=>{
+        if (el.dataset.done === '1') return;   // لا تعيد العد إذا انتهى سابقًا
+        const target = Number(el.dataset.target || 0);
+        const dur = 1400 + Math.random()*800;
+        const start = performance.now();
+        function tick(t){
+          const p = Math.min(1,(t-start)/dur);
+          const val = Math.floor(target * p);
+          el.textContent = val.toLocaleString('en-US');
+          if(p < 1){
+            requestAnimationFrame(tick);
+          } else {
+            el.textContent = target.toLocaleString('en-US');
+            el.dataset.done = '1';
+          }
+        }
         requestAnimationFrame(tick);
-      } else {
-        // ثبّت القيمة النهائية مرة أخيرة
-        el.textContent = target.toLocaleString('en-US');
-        el.dataset.done = '1';
-      }
+      });
     }
-    requestAnimationFrame(tick);
-  });
-}
-</script>
 
     // Back to top
     const toTop = document.getElementById('toTop');
