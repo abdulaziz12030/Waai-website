@@ -18,6 +18,12 @@
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
+    /* شريط إخباري أعلى الصفحة (يسار -> يمين) — إن كنت تستخدمه */
+    .news-ticker{position:sticky;top:0;z-index:80;background:#0d3b66;color:#fff}
+    .news-ticker .inner{max-width:1200px;margin:auto;padding:8px 18px;overflow:hidden;white-space:nowrap;direction:ltr}
+    .news-ticker .inner span{display:inline-block;direction:ltr;will-change:transform;animation:tickerLTR 12s linear infinite}
+    @keyframes tickerLTR{from{transform:translateX(-100%)} to{transform:translateX(100%)}}
+
     /* Header */
     .nav{position:sticky;top:0;z-index:60;backdrop-filter:saturate(140%) blur(8px);background:rgba(255,255,255,.9);border-bottom:1px solid #e9f0f7}
     .nav .wrap{max-width:1200px;margin:auto;display:flex;align-items:center;gap:18px;padding:12px 18px}
@@ -28,9 +34,11 @@
     .btn{background:var(--bg);color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.25s}
     .btn:hover{transform:translateY(-1px);background:#0b3356}
     .btn-outline{background:#fff;color:var(--bg);border:2px solid var(--bg)}
+    .btn-ghost{background:rgba(13,59,102,.18);border:1px solid rgba(255,255,255,.35);color:#fff}
+    .btn-ghost:hover{background:rgba(13,59,102,.30)}
     .btn-cta{background:linear-gradient(135deg,var(--bg),var(--bg2));}
 
-    /* Hero (بنر) */
+    /* Hero */
     .hero{position:relative;color:#fff;min-height:58vh;display:grid;place-items:center}
     .hero::before{
       content:"";position:absolute;inset:0;
@@ -39,12 +47,10 @@
         url('https://i.postimg.cc/15g8vHVX/09382-A4-B-A991-47-E6-8-C0-F-8-FDAB08-C01-EA.png') center/cover no-repeat;
       background-position:center 35%;
     }
-    .hero .wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;padding:56px 18px;position:relative}
+    .hero .wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr;gap:28px;padding:56px 18px;position:relative}
     .hero h1{font-size:clamp(26px,4.2vw,48px);line-height:1.25;margin:0 0 10px;font-weight:800}
     .hero p.lead{opacity:.95;margin:0 0 20px;font-weight:600}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-    .btn-ghost{background:rgba(13,59,102,.18);border:1px solid rgba(255,255,255,.35);color:#fff}
-    .btn-ghost:hover{background:rgba(13,59,102,.30)}
 
     /* أقسام عامة */
     .section{max-width:1200px;margin:54px auto;padding:0 18px}
@@ -58,27 +64,31 @@
     .tag{display:inline-flex;align-items:center;gap:6px;background:var(--muted);color:#1b3956;padding:6px 10px;border-radius:999px;font-weight:700;font-size:.9rem}
     .actions{margin-top:auto;display:flex;gap:8px}
 
-    /* شريط إخباري أعلى الصفحة (يسار -> يمين) */
-    .news-ticker{position:sticky;top:0;z-index:80;background:#0d3b66;color:#fff}
-    .news-ticker .inner{max-width:1200px;margin:auto;padding:8px 18px;overflow:hidden;white-space:nowrap;direction:ltr}
-    .news-ticker .inner span{display:inline-block;direction:ltr;will-change:transform;animation:tickerLTR 12s linear infinite}
-    @keyframes tickerLTR{from{transform:translateX(-100%)} to{transform:translateX(100%)}}
+    /* Stats (إن كان لديك قسم الأرقام) */
+    .stats{max-width:1200px;margin:34px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 18px}
+    .stat{background:rgba(255,255,255,.85);backdrop-filter:blur(4px);border:1px solid #e4eef7;border-radius:16px;box-shadow:var(--shadow);padding:18px;text-align:center}
+    .kpi{font-size:clamp(26px,3.5vw,38px);font-weight:800;color:var(--acc)}
+    .kpi small{font-size:.55em;color:var(--acc)}
+    .stat p{margin:6px 0 0;font-weight:700;color:#355a7e}
 
     /* Footer */
     footer{margin-top:56px;background:#0e3c67;color:#cfe3f8}
     footer .wrap{max-width:1200px;margin:auto;padding:22px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .foot-links{display:flex;gap:14px;flex-wrap:wrap}
+    .foot-links a{color:#dce9f7}
+    .credit{opacity:.85}
 
-    /* زر واتساب & عودة للأعلى */
+    /* زر واتساب (يسار) & للأعلى */
     .wa{position:fixed;left:16px;bottom:16px;z-index:70}
-    .wa a{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:#25D366;box-shadow:0 12px 30px rgba(12,151,79,.28)}
+    .wa a{
+      display:grid;place-items:center;width:58px;height:58px;border-radius:50%;
+      background:#25D366;box-shadow:0 12px 30px rgba(12,151,79,.28)
+    }
     .wa svg{width:30px;height:30px}
     #toTop{position:fixed;right:16px;bottom:86px;z-index:70;width:52px;height:52px;border:none;border-radius:14px;background:rgba(13,59,102,.9);color:#fff;box-shadow:0 10px 24px rgba(13,59,102,.25);display:none;cursor:pointer;font-size:20px}
 
     /* Responsive */
-    @media (max-width:1024px){
-      .hero .wrap{grid-template-columns:1fr;gap:18px}
-      .grid{grid-template-columns:repeat(2,1fr)}
-    }
+    @media (max-width:1024px){ .grid{grid-template-columns:repeat(2,1fr)} }
     @media (max-width:640px){
       .links{display:none}
       .grid{grid-template-columns:1fr}
@@ -89,12 +99,12 @@
 </head>
 <body id="top">
 
-  <!-- شريط إخباري -->
+  <!-- شريط إخباري (اختياري) -->
+  <!--
   <div class="news-ticker" role="status" aria-label="إشعار">
-    <div class="inner">
-      <span>🚀 قريبًا الإطلاق الرسمي لمنصة واعي | استشارات إدارية وحلول رقمية.</span>
-    </div>
+    <div class="inner"><span>🚀 قريبًا الإطلاق الرسمي لمنصة واعي | استشارات إدارية وحلول رقمية.</span></div>
   </div>
+  -->
 
   <!-- Header -->
   <header class="nav">
@@ -118,14 +128,14 @@
         <h1>نصمّم حلولًا إداريّة <span style="color:#2ec4b6">تصنع أثرًا</span></h1>
         <p class="lead">استشارات، لوحات متابعة، حوكمة، إنشاء مواقع، ومحتوى إداري يعزز أداء منظمتك — بكوادر سعودية متخصصة.</p>
         <div class="hero-actions">
-          <a href="#services" class="btn-ghost btn">استعرض خدماتنا</a>
-          <a href="#leadForm" class="btn-ghost btn" id="ctaConsult">اطلب استشارة الآن</a>
+          <a href="#services" class="btn btn-ghost">استعرض خدماتنا</a>
+          <a href="#leadForm" class="btn btn-ghost" id="ctaConsult">اطلب استشارة الآن</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services (مثال مختصر) -->
+  <!-- Services (مثال) -->
   <section class="section" id="services">
     <h2>خدماتنا</h2>
     <div class="grid">
@@ -137,9 +147,7 @@
           <h3>لوحات متابعة تفاعلية</h3>
           <div class="tag">KPI Dashboards</div>
           <p>تصميم وربط لوحات قياس لصنّاع القرار، مع تقارير تنفيذ تُظهر التقدم.</p>
-          <div class="actions">
-            <a href="#leadForm" class="btn btn-outline service-btn" data-service="لوحات متابعة">اطلب الخدمة</a>
-          </div>
+          <div class="actions"><a href="#leadForm" class="btn btn-outline service-btn" data-service="لوحات متابعة">اطلب الخدمة</a></div>
         </div>
       </article>
 
@@ -151,9 +159,7 @@
           <h3>الحوكمة وبناء الأطر</h3>
           <div class="tag">سياسات وإجراءات</div>
           <p>أدلة وسياسات ومصفوفة صلاحيات تعزز الانضباط والوضوح المؤسسي.</p>
-          <div class="actions">
-            <a href="#leadForm" class="btn btn-outline service-btn" data-service="حوكمة وسياسات">اطلب الخدمة</a>
-          </div>
+          <div class="actions"><a href="#leadForm" class="btn btn-outline service-btn" data-service="حوكمة وسياسات">اطلب الخدمة</a></div>
         </div>
       </article>
 
@@ -165,21 +171,33 @@
           <h3>الخطط التشغيلية</h3>
           <div class="tag">من الإستراتيجية للتنفيذ</div>
           <p>تحويل الأهداف إلى مبادرات ومؤشرات وجدولة تفصيلية قابلة للقياس.</p>
-          <div class="actions">
-            <a href="#leadForm" class="btn btn-outline service-btn" data-service="الخطط التشغيلية">اطلب الخدمة</a>
-          </div>
+          <div class="actions"><a href="#leadForm" class="btn btn-outline service-btn" data-service="الخطط التشغيلية">اطلب الخدمة</a></div>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- تواصل / نموذج طلب خدمة -->
+  <!-- Impact (اختياري) -->
+  <section class="section" id="impact">
+    <h2>أثرنا</h2>
+    <p class="note">نماذج مختصرة من أعمالنا ونتائجها.</p>
+  </section>
+
+  <!-- Contact -->
   <section class="section" id="contact">
     <h2>تواصل معنا</h2>
     <div class="grid" style="grid-template-columns:1.1fr .9fr">
       <div class="card" style="padding:18px">
         <h3 style="margin:0">تعرف علينا أكثر</h3>
         <p>نرتب الفوضى التشغيلية ونحولها إلى نتائج قابلة للقياس عبر أدوات تنفيذ ذكية وهوية سعودية معاصرة.</p>
+        <img
+          class="reveal"
+          alt="فريق سعودي يعمل على لوحات ومشاريع"
+          src="https://i.postimg.cc/HkzjxPfS/D05-FD7-C9-012-B-4244-8762-784680-DD235-F.png"
+          referrerpolicy="no-referrer"
+          onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1600&auto=format&fit=crop'"
+          style="border-radius:14px;box-shadow:var(--shadow);margin-top:6px"
+        >
       </div>
 
       <div class="card" style="padding:18px">
@@ -222,21 +240,22 @@
   <!-- Footer -->
   <footer>
     <div class="wrap">
-      <div>© 2025 منصة واعي – جميع الحقوق محفوظة</div>
-      <nav class="links">
+      <div class="credit">© 2025 منصة واعي – جميع الحقوق محفوظة</div>
+      <nav class="foot-links">
         <a href="#services">الخدمات</a>
         <a href="#contact">تواصل</a>
       </nav>
     </div>
   </footer>
 
-  <!-- زر واتساب (يسار) -->
+  <!-- زر واتساب (يسار) — الأيقونة الرسمية -->
   <div class="wa">
     <a aria-label="تواصل واتساب" href="https://wa.me/966552794082" target="_blank" rel="noopener">
-      <!-- أيقونة واتساب الرسمية داخل دائرة -->
       <svg viewBox="0 0 32 32" aria-hidden="true" role="img">
-        <path fill="#25D366" d="M16 0C7.178 0 0 7.178 0 16c0 2.817.738 5.457 2.02 7.742L0 32l8.487-2.18A15.86 15.86 0 0 0 16 32c8.822 0 16-7.178 16-16S24.822 0 16 0z"/>
-        <path fill="#fff" d="M25.35 22.11c-.33.94-1.63 1.72-2.5 1.78-.65.05-1.47.09-4.74-1.01-3.97-1.31-6.53-5.66-6.73-5.92-.2-.26-1.61-2.14-1.61-4.09 0-1.95 1.04-2.9 1.41-3.3.36-.4.79-.5 1.06-.5h.76c.24 0 .56-.04.85.65.33.79 1.13 2.73 1.23 2.93.1.2.16.43.03.69-.13.26-.2.43-.4.66-.2.23-.43.52-.62.7-.2.2-.4.41-.17.8.24.4 1.06 1.74 2.28 2.82 1.57 1.4 2.9 1.83 3.3 2.03.4.2.63.17.86-.1.23-.26.99-1.16 1.26-1.56.26-.4.53-.33.86-.2.33.13 2.11 1 2.47 1.18.36.18.6.26.69.4.09.15.09.86-.24 1.8z"/>
+        <!-- دائرة الخلفية -->
+        <circle cx="16" cy="16" r="16" fill="#25D366"></circle>
+        <!-- شعار واتساب أبيض -->
+        <path fill="#fff" d="M19.11 17.52c-.28-.14-1.65-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.74.9-.9 1.08-.17.19-.34.21-.62.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.29-.02-.45.12-.59.12-.12.28-.31.42-.46.14-.16.19-.27.28-.46.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.1-.23-.55-.47-.47-.64-.48l-.54-.01c-.19 0-.49.07-.75.35-.26.27-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.12.55-.08 1.65-.67 1.88-1.31.23-.65.23-1.2.16-1.31-.07-.12-.26-.19-.55-.33zM26.67 5.33C23.87 2.53 20.17 1 16.27 1 8.41 1 2 7.41 2 15.27c0 2.5.66 4.93 1.91 7.07L2 31l8.86-1.86c2.09 1.14 4.45 1.74 6.88 1.74h.01c7.86 0 14.27-6.41 14.27-14.27.01-3.9-1.52-7.6-4.35-10.41z"/>
       </svg>
     </a>
   </div>
@@ -245,20 +264,22 @@
   <button id="toTop" aria-label="العودة للأعلى">↑</button>
 
   <script>
-    // إخفاء/إظهار زر للأعلى
+    // إظهار زر للأعلى
     const toTop = document.getElementById('toTop');
     window.addEventListener('scroll', ()=>{ toTop.style.display = (window.scrollY > 400) ? 'block' : 'none'; });
     toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
 
-    // عند الضغط على "اطلب استشارة الآن" يختار "طلب استشارة" مباشرة
-    document.getElementById('ctaConsult').addEventListener('click', ()=>{
-      const sel = document.getElementById('serviceSelect');
-      if(sel){ sel.value = 'طلب استشارة'; }
-    });
-
-    // وروابط "اطلب الخدمة" داخل كروت الخدمات تختار الخدمة المناسبة
+    // اختيار "طلب استشارة" تلقائيًا عند الضغط على زر الهيرو
+    const cta = document.getElementById('ctaConsult');
+    if(cta){
+      cta.addEventListener('click', ()=>{
+        const sel = document.getElementById('serviceSelect');
+        if(sel){ sel.value = 'طلب استشارة'; }
+      });
+    }
+    // اختيار الخدمة المناسبة من كروت "اطلب الخدمة"
     document.querySelectorAll('.service-btn').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
+      btn.addEventListener('click', ()=>{
         const service = btn.dataset.service;
         const sel = document.getElementById('serviceSelect');
         if(sel && service){ sel.value = service; }
@@ -273,7 +294,8 @@
       const btn = document.getElementById('submitBtn');
       const ok = document.getElementById('okMsg');
       const no = document.getElementById('noMsg');
-      ok.style.display='none'; no.style.display='none';
+      if(ok) ok.style.display='none';
+      if(no) no.style.display='none';
       if(btn){ btn.disabled = true; btn.textContent = '... جارٍ الإرسال'; }
       const data = Object.fromEntries(new FormData(form).entries());
       try{
@@ -282,11 +304,11 @@
           body: JSON.stringify(data)
         });
         if(res.ok){
-          form.reset(); ok.style.display='block';
+          form.reset(); if(ok) ok.style.display='block';
         }else{
-          no.style.display='block';
+          if(no) no.style.display='block';
         }
-      }catch(_){ no.style.display='block'; }
+      }catch(_){ if(no) no.style.display='block'; }
       finally{ if(btn){ btn.disabled=false; btn.textContent='إرسال الطلب'; } }
       return false;
     }
