@@ -91,7 +91,7 @@
     /* WhatsApp & ToTop */
     .wa{position:fixed;left:16px;bottom:16px;z-index:70}
     .wa a{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:#25D366;box-shadow:0 12px 30px rgba(12,151,79,.28)}
-    .wa svg{width:30px;height:30px;fill:#fff}
+    .wa svg{width:32px;height:32px;fill:#fff}
     #toTop{position:fixed;right:16px;bottom:86px;z-index:70;width:52px;height:52px;border:none;border-radius:14px;background:rgba(13,59,102,.9);color:#fff;box-shadow:0 10px 24px rgba(13,59,102,.25);display:none;cursor:pointer;font-size:20px}
 
     /* Reveal */
@@ -118,7 +118,7 @@
 
   <!-- News Ticker -->
   <div class="news-ticker" role="status" aria-label="إشعار">
-    <div class="inner"><span class="ticker-text">🚀 قريبًا الإطلاق الرسمي لمنصة واعي | حلول إدارية واستشارات احترافية.</span></div>
+    <div class="inner"><span class="ticker-text">🚀 قريبا الإطلاق الرسمي لمنصة واعي | استشارات إدارية وحلول رقمية.</span></div>
   </div>
 
   <!-- Header -->
@@ -126,7 +126,7 @@
     <div class="wrap">
       <a href="#top" class="brand" aria-label="منصة واعي">
         <img src="https://i.postimg.cc/Y9f0wpZK/EE23-D38-C-FE2-F-407-A-8-D7-C-1828-DE1-E0-B7-A.png" alt="شعار منصة واعي">
-        <div class="title">منصة واعي - للاستشارات الإدارية والحلول الرقمية</div>
+        <div class="title">منصة واعي - استشارات إدارية وحلول رقمية.</div>
       </a>
       <nav class="links" aria-label="روابط رئيسية">
         <a href="#services">الخدمات</a>
@@ -143,7 +143,7 @@
         <h1>نصمّم حلولًا إداريّة <span style="color:#2ec4b6">تصنع أثرًا</span></h1>
         <p class="lead">استشارات، لوحات متابعة، حوكمة، إنشاء مواقع، ومحتوى إداري يعزز أداء منظمتك — بكوادر سعودية متخصصة.</p>
         <div class="hero-actions">
-          <a href="#leadForm" class="btn btn-ghost">اطلب استشارة الآن</a>
+          <a href="#leadForm" class="btn btn-ghost ask-btn" data-service="">اطلب استشارة الآن</a>
           <a href="#services" class="btn btn-ghost" aria-label="استعرض خدماتنا">استعرض خدماتنا</a>
         </div>
       </div>
@@ -162,7 +162,7 @@
           <h3>الحوكمة وبناء الأطر</h3>
           <div class="tag">سياسات & إجراءات</div>
           <p>أدلة وسياسات ومصفوفة صلاحيات تعزز الانضباط والوضوح المؤسسي.</p>
-          <div class="actions"><a href="#leadForm" class="btn">اطلب الخدمة</a></div>
+          <div class="actions"><a href="#leadForm" class="btn ask-btn" data-service="حوكمة وسياسات">اطلب الخدمة</a></div>
         </div>
       </article>
 
@@ -172,7 +172,7 @@
           <h3>لوحات متابعة تفاعلية</h3>
           <div class="tag">KPI Dashboards</div>
           <p>تصميم وربط لوحات قياس لصنّاع القرار، مع تقارير تنفيذ تُظهر التقدم.</p>
-          <div class="actions"><a href="#leadForm" class="btn">اطلب الخدمة</a></div>
+          <div class="actions"><a href="#leadForm" class="btn ask-btn" data-service="لوحات متابعة">اطلب الخدمة</a></div>
         </div>
       </article>
 
@@ -182,7 +182,7 @@
           <h3>الخطط التشغيلية</h3>
           <div class="tag">من الإستراتيجية للتنفيذ</div>
           <p>تحويل الأهداف إلى مبادرات ومؤشرات وجدولة تفصيلية قابلة للقياس.</p>
-          <div class="actions"><a href="#leadForm" class="btn">اطلب الخدمة</a></div>
+          <div class="actions"><a href="#leadForm" class="btn ask-btn" data-service="الخطط التشغيلية">اطلب الخدمة</a></div>
         </div>
       </article>
 
@@ -192,10 +192,16 @@
           <h3>إنشاء مواقع تعريفية</h3>
           <div class="tag">فريق سعودي</div>
           <p>مواقع تعريفية حديثة سريعة وآمنة ومتوافقة مع الجوال وهوية منظمتك.</p>
-          <div class="actions"><a href="#leadForm" class="btn">اطلب الخدمة</a></div>
+          <div class="actions"><a href="#leadForm" class="btn ask-btn" data-service="مواقع تعريفية">اطلب الخدمة</a></div>
         </div>
       </article>
     </div>
+  </section>
+
+  <!-- أثرنا (مكان محفوظ إن رغبت لاحقًا) -->
+  <section class="section" id="impact" aria-label="أثرنا">
+    <h2 class="reveal">أثرنا</h2>
+    <p class="note reveal">نماذج مختصرة للأثر الذي صنعناه لعملائنا.</p>
   </section>
 
   <!-- Stats -->
@@ -235,7 +241,7 @@
           <div class="inp"><label>رقم الجوال</label><input name="phone" type="tel" placeholder="05xxxxxxxx" inputmode="tel"></div>
           <div class="inp">
             <label>نوع الخدمة</label>
-            <select name="service" required>
+            <select name="service" id="serviceSelect" required>
               <option value="" selected disabled>اختر الخدمة</option>
               <option>لوحات متابعة</option>
               <option>الخطط التشغيلية</option>
@@ -263,10 +269,13 @@
     </div>
   </footer>
 
-  <!-- WhatsApp Floating -->
+  <!-- WhatsApp Floating (أيقونة رسمية) -->
   <div class="wa">
     <a aria-label="تواصل واتساب" href="https://wa.me/966552794082" target="_blank" rel="noopener">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.52c-.28-.14-1.65-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.29-.74.9-.9 1.08-.17.19-.34.21-.62.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.29-.02-.45.12-.59.12-.12.28-.31.42-.46.14-.16.19-.27.28-.46.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.1-.23-.55-.47-.47-.64-.48l-.54-.01c-.19 0-.49.07-.75.35-.26.27-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.12.55-.08 1.65-.67 1.88-1.31.23-.65.23-1.2.16-1.31-.07-.12-.26-.19-.55-.33zM26.67 5.33C23.87 2.53 20.17 1 16.27 1 8.41 1 2 7.41 2 15.27c0 2.5.66 4.93 1.91 7.07L2 31l8.86-1.86c2.09 1.14 4.45 1.74 6.88 1.74h.01c7.86 0 14.27-6.41 14.27-14.27.01-3.9-1.52-7.6-4.35-10.41z"/></svg>
+      <!-- Bootstrap Icons - WhatsApp -->
+      <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+        <path d="M13.601 2.326A7.94 7.94 0 0 0 8.012.003a7.99 7.99 0 0 0-6.94 11.868L.001 16l4.21-1.06A7.99 7.99 0 0 0 8.012 16h.003a7.99 7.99 0 0 0 5.586-13.674ZM8.015 14.5a6.48 6.48 0 0 1-3.307-.91l-.237-.141-2.5.629.667-2.438-.154-.25a6.5 6.5 0 1 1 5.531 3.11Zm3.676-4.842c-.2-.1-1.178-.58-1.36-.646-.182-.066-.315-.1-.448.1-.133.2-.513.646-.628.78-.115.133-.232.15-.432.05-.2-.1-.846-.311-1.612-.992-.595-.53-.997-1.183-1.112-1.383-.115-.2-.012-.307.087-.407.089-.088.2-.23.3-.345.1-.115.133-.2.2-.332.066-.133.033-.25-.011-.35-.045-.1-.46-1.113-.633-1.52-.166-.4-.336-.35-.448-.356l-.382-.007c-.133 0-.35.05-.535.25-.184.2-.7.68-.7 1.65 0 .97.717 1.907.817 2.037.1.13 1.415 2.161 3.428 3.032.479.211.852.338 1.142.432.479.153.913.133 1.255.084.387-.056 1.178-.48 1.345-.94.167-.46.167-.86.117-.94-.05-.084-.185-.137-.395-.237Z"/>
+      </svg>
     </a>
   </div>
 
@@ -286,6 +295,33 @@
   </div>
 
   <script>
+    // تفعيل الأزرار: طلب الخدمة مع اختيار تلقائي
+    document.querySelectorAll('.ask-btn').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        // نسمح بالانتقال الطبيعي للهاش ثم نضبط التحديد
+        const service = btn.dataset.service || '';
+        const form = document.getElementById('leadForm');
+        if(form){
+          // اذهب مباشرة للنموذج بدون تمرير ناعم
+          form.scrollIntoView();
+          const select = document.getElementById('serviceSelect');
+          if(select){
+            // إذا مرّرت خدمة نحددها
+            if(service){
+              Array.from(select.options).forEach(o=>{
+                o.selected = (o.text.trim() === service.trim());
+              });
+            } else {
+              select.selectedIndex = 0; // بدون اختيار
+            }
+          }
+          // ركز على أول حقل
+          const nameInput = form.querySelector('input[name="name"]');
+          if(nameInput) nameInput.focus();
+        }
+      });
+    });
+
     // Scroll reveal + counters
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
@@ -314,7 +350,7 @@
     // Back to top
     const toTop = document.getElementById('toTop');
     window.addEventListener('scroll', ()=>{ toTop.style.display = (window.scrollY > 400) ? 'block' : 'none'; });
-    toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+    toTop.addEventListener('click', ()=> window.scrollTo({top:0}));
 
     // Thank You overlay helpers
     const thanksEl = document.getElementById('thanks');
