@@ -143,7 +143,8 @@
         <h1>نصمّم حلولًا إداريّة <span style="color:#2ec4b6">تصنع أثرًا</span></h1>
         <p class="lead">استشارات، لوحات متابعة، حوكمة، إنشاء مواقع، ومحتوى إداري يعزز أداء منظمتك — بكوادر سعودية متخصصة.</p>
         <div class="hero-actions">
-          <a href="#leadForm" class="btn btn-ghost ask-btn" data-service="">اطلب استشارة الآن</a>
+          <!-- ضبط اختيار "طلب استشارة" تلقائيًا -->
+          <a href="#leadForm" class="btn btn-ghost ask-btn" data-service="طلب استشارة">اطلب استشارة الآن</a>
           <a href="#services" class="btn btn-ghost" aria-label="استعرض خدماتنا">استعرض خدماتنا</a>
         </div>
       </div>
@@ -229,6 +230,8 @@
         </ul>
         <img class="reveal" alt="فريق سعودي يعمل على مشاريع"
              src="https://i.postimg.cc/HkzjxPfS/D05-FD7-C9-012-B-4244-8762-784680-DD235-F.png"
+             referrerpolicy="no-referrer"
+             onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1600&auto=format&fit=crop'"
              style="border-radius:14px;box-shadow:var(--shadow);margin-top:6px">
       </div>
 
@@ -243,6 +246,7 @@
             <label>نوع الخدمة</label>
             <select name="service" id="serviceSelect" required>
               <option value="" selected disabled>اختر الخدمة</option>
+              <option>طلب استشارة</option>
               <option>لوحات متابعة</option>
               <option>الخطط التشغيلية</option>
               <option>حوكمة وسياسات</option>
@@ -269,12 +273,12 @@
     </div>
   </footer>
 
-  <!-- WhatsApp Floating (أيقونة رسمية) -->
+  <!-- WhatsApp Floating (أيقونة رسمية على اليسار) -->
   <div class="wa">
     <a aria-label="تواصل واتساب" href="https://wa.me/966552794082" target="_blank" rel="noopener">
-      <!-- Bootstrap Icons - WhatsApp -->
+      <!-- Bootstrap Icons - WhatsApp (مقبول رسميًا) -->
       <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-        <path d="M13.601 2.326A7.94 7.94 0 0 0 8.012.003a7.99 7.99 0 0 0-6.94 11.868L.001 16l4.21-1.06A7.99 7.99 0 0 0 8.012 16h.003a7.99 7.99 0 0 0 5.586-13.674ZM8.015 14.5a6.48 6.48 0 0 1-3.307-.91l-.237-.141-2.5.629.667-2.438-.154-.25a6.5 6.5 0 1 1 5.531 3.11Zm3.676-4.842c-.2-.1-1.178-.58-1.36-.646-.182-.066-.315-.1-.448.1-.133.2-.513.646-.628.78-.115.133-.232.15-.432.05-.2-.1-.846-.311-1.612-.992-.595-.53-.997-1.183-1.112-1.383-.115-.2-.012-.307.087-.407.089-.088.2-.23.3-.345.1-.115.133-.2.2-.332.066-.133.033-.25-.011-.35-.045-.1-.46-1.113-.633-1.52-.166-.4-.336-.35-.448-.356l-.382-.007c-.133 0-.35.05-.535.25-.184.2-.7.68-.7 1.65 0 .97.717 1.907.817 2.037.1.13 1.415 2.161 3.428 3.032.479.211.852.338 1.142.432.479.153.913.133 1.255.084.387-.056 1.178-.48 1.345-.94.167-.46.167-.86.117-.94-.05-.084-.185-.137-.395-.237Z"/>
+        <path fill="#fff" d="M13.601 2.326A7.94 7.94 0 0 0 8.012.003a7.99 7.99 0 0 0-6.94 11.868L.001 16l4.21-1.06A7.99 7.99 0 0 0 8.012 16h.003a7.99 7.99 0 0 0 5.586-13.674ZM8.015 14.5a6.48 6.48 0 0 1-3.307-.91l-.237-.141-2.5.629.667-2.438-.154-.25a6.5 6.5 0 1 1 5.531 3.11Zm3.676-4.842c-.2-.1-1.178-.58-1.36-.646-.182-.066-.315-.1-.448.1-.133.2-.513.646-.628.78-.115.133-.232.15-.432.05-.2-.1-.846-.311-1.612-.992-.595-.53-.997-1.183-1.112-1.383-.115-.2-.012-.307.087-.407.089-.088.2-.23.3-.345.1-.115.133-.2.2-.332.066-.133.033-.25-.011-.35-.045-.1-.46-1.113-.633-1.52-.166-.4-.336-.35-.448-.356l-.382-.007c-.133 0-.35.05-.535.25-.184.2-.7.68-.7 1.65 0 .97.717 1.907.817 2.037.1.13 1.415 2.161 3.428 3.032.479.211.852.338 1.142.432.479.153.913.133 1.255.084.387-.056 1.178-.48 1.345-.94.167-.46.167-.86.117-.94-.05-.084-.185-.137-.395-.237Z"/>
       </svg>
     </a>
   </div>
@@ -295,27 +299,20 @@
   </div>
 
   <script>
-    // تفعيل الأزرار: طلب الخدمة مع اختيار تلقائي
+    // تفعيل أزرار "اطلب الخدمة" واختيار الخدمة تلقائيًا
     document.querySelectorAll('.ask-btn').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
-        // نسمح بالانتقال الطبيعي للهاش ثم نضبط التحديد
-        const service = btn.dataset.service || '';
+      btn.addEventListener('click', ()=>{
+        const serviceText = btn.dataset.service || 'طلب استشارة';
         const form = document.getElementById('leadForm');
         if(form){
-          // اذهب مباشرة للنموذج بدون تمرير ناعم
+          // اذهب فورًا للنموذج (بدون تمرير ناعم)
           form.scrollIntoView();
           const select = document.getElementById('serviceSelect');
           if(select){
-            // إذا مرّرت خدمة نحددها
-            if(service){
-              Array.from(select.options).forEach(o=>{
-                o.selected = (o.text.trim() === service.trim());
-              });
-            } else {
-              select.selectedIndex = 0; // بدون اختيار
-            }
+            Array.from(select.options).forEach(o=>{
+              o.selected = (o.text.trim() === serviceText.trim());
+            });
           }
-          // ركز على أول حقل
           const nameInput = form.querySelector('input[name="name"]');
           if(nameInput) nameInput.focus();
         }
