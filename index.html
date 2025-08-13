@@ -18,11 +18,21 @@
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
-    /* ===== شريط إخباري أعلى الصفحة ===== */
+    /* ===== شريط إخباري أعلى الصفحة (يسار ← يمين) ===== */
     .news-ticker{position:sticky;top:0;z-index:80;background:#0d3b66;color:#fff}
-    .news-ticker .inner{max-width:1200px;margin:auto;padding:8px 18px;overflow:hidden;white-space:nowrap;direction:ltr}
-    .news-ticker .inner span{display:inline-block;animation:tickerLTR 18s linear infinite}
-    @keyframes tickerLTR{from{transform:translateX(-110%)} to{transform:translateX(100%)}}
+    .news-ticker .inner{
+      max-width:1200px;margin:auto;padding:8px 18px;
+      overflow:hidden;white-space:nowrap;direction:ltr
+    }
+    .news-ticker .inner span{
+      display:inline-block;
+      will-change:transform;
+      animation:tickerLTR 18s linear infinite;
+    }
+    @keyframes tickerLTR{
+      from{transform:translateX(-100%)}
+      to  {transform:translateX(100%)}
+    }
 
     /* Header */
     .nav{position:sticky;top:0;z-index:60;backdrop-filter:saturate(140%) blur(8px);background:rgba(255,255,255,.9);border-bottom:1px solid #e9f0f7}
@@ -116,10 +126,10 @@
 </head>
 <body id="top">
 
-  <!-- شريط إخباري -->
+  <!-- شريط إخباري (🚀 في البداية ويسار→يمين) -->
   <div class="news-ticker" role="status" aria-label="إشعار">
     <div class="inner">
-      <span> 🚀 قريبًا الإطلاق الرسمي لمنصة واعي | حلول إدارية واستشارات احترافية.</span>
+      <span dir="ltr"><bdi>🚀‎ </bdi>قريبًا الإطلاق الرسمي لمنصة واعي | حلول إدارية واستشارات احترافية.</span>
     </div>
   </div>
 
@@ -143,10 +153,9 @@
     <div class="wrap">
       <div class="reveal">
         <h1>نصمّم حلولًا إداريّة <span style="color:#2ec4b6">تصنع أثرًا</span></h1>
-        <p class="lead">استشارات، لوحات متابعة، حوكمة، ومحتوى إداري يعزز أداء منظمتك — بكوادر سعودية متخصصة.</p>
+        <p class="lead">استشارات، لوحات متابعة، حوكمة، ومحتوى إداري يعزز أداء منظمتك — بهوية سعودية حديثة.</p>
         <div class="hero-actions">
-          <a href="#services" class="btn btn-ghost">استعرض خدماتنا</a>
-          <a href="#contact" class="btn btn-ghost">اطلب استشارة الآن</a>
+          <a href="#contact" class="btn btn-ghost js-contact">اطلب استشارة الآن</a>
         </div>
       </div>
     </div>
@@ -166,9 +175,9 @@
         <div class="content">
           <h3>إنشاء مواقع تعريفية</h3>
           <div class="tag">فريق سعودي • تجربة سلسة</div>
-          <p>نبني مواقع تعريفية حديثة متوافقة مع الجوال ومحركات البحث، مع خيارات استضافة ونشر.</p>
+          <p>نبني مواقع تعريفية حديثة متوافقة مع الجوال ومحركات البحث، مع هوية سعودية محترفة وخيارات استضافة ونشر.</p>
           <div class="actions">
-            <a href="#contact" class="btn" data-service="مواقع تعريفية">اطلب الخدمة</a>
+            <a href="#contact" class="btn js-service" data-service="مواقع تعريفية">اطلب الخدمة</a>
           </div>
         </div>
       </article>
@@ -183,7 +192,9 @@
           <h3>الحوكمة وبناء الأطر</h3>
           <div class="tag">سياسات & إجراءات</div>
           <p>أدلة وسياسات ومصفوفة صلاحيات تعزز الانضباط والوضوح المؤسسي.</p>
-          <div class="actions"><a href="#contact" class="btn" data-service="حوكمة وسياسات">اطلب الخدمة</a></div>
+          <div class="actions">
+            <a href="#contact" class="btn js-service" data-service="حوكمة وسياسات">اطلب الخدمة</a>
+          </div>
         </div>
       </article>
 
@@ -197,7 +208,9 @@
           <h3>لوحات متابعة تفاعلية</h3>
           <div class="tag">KPI Dashboards</div>
           <p>تصميم وربط لوحات قياس لصنّاع القرار، مع تقارير تنفيذ تُظهر التقدم.</p>
-          <div class="actions"><a href="#contact" class="btn" data-service="لوحات متابعة">اطلب الخدمة</a></div>
+          <div class="actions">
+            <a href="#contact" class="btn js-service" data-service="لوحات متابعة">اطلب الخدمة</a>
+          </div>
         </div>
       </article>
 
@@ -211,7 +224,9 @@
           <h3>الخطط التشغيلية</h3>
           <div class="tag">من الإستراتيجية للتنفيذ</div>
           <p>تحويل الأهداف إلى مبادرات ومؤشرات وجدولة تفصيلية قابلة للقياس.</p>
-          <div class="actions"><a href="#contact" class="btn" data-service="الخطط التشغيلية">اطلب الخدمة</a></div>
+          <div class="actions">
+            <a href="#contact" class="btn js-service" data-service="الخطط التشغيلية">اطلب الخدمة</a>
+          </div>
         </div>
       </article>
     </div>
@@ -249,6 +264,8 @@
         <p>نساعدك على ترتيب الفوضى التشغيلية وتحويلها إلى نتائج قابلة للقياس عبر أدوات تنفيذ ذكية وهوية سعودية معاصرة.</p>
         <ul style="line-height:2">
           <li>الرياض – المملكة العربية السعودية</li>
+          <li>البريد: <strong>abdulaziz.algharawi@gmail.com</strong></li>
+          <li>سناب/تيك توك/إنستغرام: <strong>@waai.sa</strong></li>
         </ul>
         <img class="reveal" alt="فريق سعودي يعمل على لوحات ومشاريع"
              src="https://i.postimg.cc/HkzjxPfS/D05-FD7-C9-012-B-4244-8762-784680-DD235-F.png"
@@ -289,6 +306,8 @@
     <div class="wrap">
       <div class="credit">© 2025 منصة واعي – جميع الحقوق محفوظة</div>
       <nav class="foot-links">
+        <a href="#services">الخدمات</a>
+        <a href="#contact">تواصل</a>
       </nav>
     </div>
   </footer>
@@ -296,7 +315,6 @@
   <!-- WhatsApp (left) -->
   <div class="wa">
     <a aria-label="تواصل واتساب" href="https://wa.me/966552794082" target="_blank" rel="noopener">
-      <!-- أيقونة واتساب الرسمية (PNG/SVG من ويكيبيديا) -->
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب">
     </a>
   </div>
@@ -330,19 +348,34 @@
       });
     }
 
-    // Back to top
+    // Scroll to top
     const toTop = document.getElementById('toTop');
     window.addEventListener('scroll', ()=>{ toTop.style.display = (window.scrollY > 400) ? 'block' : 'none'; });
     toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
 
-    // Prefill service from buttons
+    // Prefill service + تمرير ناعم للنموذج
     function setService(val){
       const sel = document.getElementById('serviceSelect');
       if(!sel) return;
       [...sel.options].forEach(o=>{ if(o.textContent===val) sel.value = o.textContent; });
     }
-    document.querySelectorAll('[data-service]').forEach(a=>{
-      a.addEventListener('click', ()=> setService(a.dataset.service));
+
+    // أي زر .js-service يختار الخدمة ويسحب للنموذج
+    document.querySelectorAll('.js-service').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const svc = a.dataset.service;
+        if(svc) setService(svc);
+        document.getElementById('contact')?.scrollIntoView({behavior:'smooth'});
+      });
+    });
+
+    // زر "اطلب استشارة الآن" في الهيرو
+    document.querySelectorAll('.js-contact').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        document.getElementById('contact')?.scrollIntoView({behavior:'smooth'});
+      });
     });
 
     // Formspree submit
