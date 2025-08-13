@@ -24,10 +24,10 @@
       max-width:1200px;margin:auto;padding:8px 18px;
       overflow:hidden;white-space:nowrap;direction:ltr
     }
-    .news-ticker .inner span{
-      display:inline-block;
+    .news-ticker .inner .ticker-text{
+      display:inline-block;direction:ltr; /* يضمن ظهور 🚀 أولاً */
       will-change:transform;
-      animation:tickerLTR 18s linear infinite;
+      animation:tickerLTR 12s linear infinite; /* أسرع */
     }
     @keyframes tickerLTR{
       from{transform:translateX(-100%)}
@@ -40,7 +40,8 @@
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--bg)}
     .brand img{height:36px;width:auto}
     .links{margin-inline-start:auto;display:flex;gap:18px;font-weight:600}
-    .btn{background:var(--bg);color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.25s}
+    .btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg);color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.25s}
+    .btn svg{width:18px;height:18px}
     .btn:hover{transform:translateY(-1px);background:#0b3356}
     .btn-outline{background:#fff;color:var(--bg);border:2px solid var(--bg)}
     .btn-cta{background:linear-gradient(135deg,var(--bg),var(--bg2));}
@@ -129,7 +130,10 @@
   <!-- شريط إخباري (🚀 في البداية ويسار→يمين) -->
   <div class="news-ticker" role="status" aria-label="إشعار">
     <div class="inner">
-      <span dir="ltr"><bdi>🚀‎ </bdi>قريبًا الإطلاق الرسمي لمنصة واعي | حلول إدارية واستشارات احترافية.</span>
+      <span class="ticker-text">
+        <bdi>🚀‎</bdi>
+        <span dir="rtl"> قريبًا الإطلاق الرسمي لمنصة واعي | حلول إدارية واستشارات احترافية.</span>
+      </span>
     </div>
   </div>
 
@@ -153,9 +157,18 @@
     <div class="wrap">
       <div class="reveal">
         <h1>نصمّم حلولًا إداريّة <span style="color:#2ec4b6">تصنع أثرًا</span></h1>
-        <p class="lead">استشارات، لوحات متابعة، حوكمة، ومحتوى إداري يعزز أداء منظمتك — بهوية سعودية حديثة.</p>
+        <p class="lead">استشارات، لوحات متابعة، حوكمة، إنشاء مواقع، ومحتوى إداري يعزز أداء منظمتك — بكوادر سعودية متخصصة</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-ghost js-contact">اطلب استشارة الآن</a>
+          <a href="#services" class="btn btn-ghost" aria-label="استعرض خدماتنا">
+            <!-- أيقونة قائمة -->
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            استعرض خدماتنا
+          </a>
+          <a href="#contact" class="btn btn-ghost" aria-label="اطلب استشارة الآن">
+            <!-- أيقونة رسالة/اتصال -->
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2h-3a10 10 0 0 1-10-10V4a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 3h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            اطلب استشارة الآن
+          </a>
         </div>
       </div>
     </div>
@@ -177,7 +190,8 @@
           <div class="tag">فريق سعودي • تجربة سلسة</div>
           <p>نبني مواقع تعريفية حديثة متوافقة مع الجوال ومحركات البحث، مع هوية سعودية محترفة وخيارات استضافة ونشر.</p>
           <div class="actions">
-            <a href="#contact" class="btn js-service" data-service="مواقع تعريفية">اطلب الخدمة</a>
+            <!-- انتقال مباشر للنموذج -->
+            <a href="#contact" class="btn" aria-label="اطلب الخدمة لمواقع تعريفية">اطلب الخدمة</a>
           </div>
         </div>
       </article>
@@ -193,7 +207,7 @@
           <div class="tag">سياسات & إجراءات</div>
           <p>أدلة وسياسات ومصفوفة صلاحيات تعزز الانضباط والوضوح المؤسسي.</p>
           <div class="actions">
-            <a href="#contact" class="btn js-service" data-service="حوكمة وسياسات">اطلب الخدمة</a>
+            <a href="#contact" class="btn" aria-label="اطلب خدمة الحوكمة">اطلب الخدمة</a>
           </div>
         </div>
       </article>
@@ -209,7 +223,7 @@
           <div class="tag">KPI Dashboards</div>
           <p>تصميم وربط لوحات قياس لصنّاع القرار، مع تقارير تنفيذ تُظهر التقدم.</p>
           <div class="actions">
-            <a href="#contact" class="btn js-service" data-service="لوحات متابعة">اطلب الخدمة</a>
+            <a href="#contact" class="btn" aria-label="اطلب خدمة لوحات المتابعة">اطلب الخدمة</a>
           </div>
         </div>
       </article>
@@ -225,7 +239,7 @@
           <div class="tag">من الإستراتيجية للتنفيذ</div>
           <p>تحويل الأهداف إلى مبادرات ومؤشرات وجدولة تفصيلية قابلة للقياس.</p>
           <div class="actions">
-            <a href="#contact" class="btn js-service" data-service="الخطط التشغيلية">اطلب الخدمة</a>
+            <a href="#contact" class="btn" aria-label="اطلب خدمة الخطط التشغيلية">اطلب الخدمة</a>
           </div>
         </div>
       </article>
@@ -352,31 +366,6 @@
     const toTop = document.getElementById('toTop');
     window.addEventListener('scroll', ()=>{ toTop.style.display = (window.scrollY > 400) ? 'block' : 'none'; });
     toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
-
-    // Prefill service + تمرير ناعم للنموذج
-    function setService(val){
-      const sel = document.getElementById('serviceSelect');
-      if(!sel) return;
-      [...sel.options].forEach(o=>{ if(o.textContent===val) sel.value = o.textContent; });
-    }
-
-    // أي زر .js-service يختار الخدمة ويسحب للنموذج
-    document.querySelectorAll('.js-service').forEach(a=>{
-      a.addEventListener('click', (e)=>{
-        e.preventDefault();
-        const svc = a.dataset.service;
-        if(svc) setService(svc);
-        document.getElementById('contact')?.scrollIntoView({behavior:'smooth'});
-      });
-    });
-
-    // زر "اطلب استشارة الآن" في الهيرو
-    document.querySelectorAll('.js-contact').forEach(a=>{
-      a.addEventListener('click', (e)=>{
-        e.preventDefault();
-        document.getElementById('contact')?.scrollIntoView({behavior:'smooth'});
-      });
-    });
 
     // Formspree submit
     async function submitLead(ev){
