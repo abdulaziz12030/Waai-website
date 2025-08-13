@@ -33,25 +33,7 @@
       from{transform:translateX(-100%)}
       to  {transform:translateX(100%)}
     }
-.brand { 
-  display:flex; 
-  align-items:center; 
-  gap:10px; 
-  font-weight:800; 
-  color:var(--bg); 
-}
-.brand .tagline{
-  white-space:nowrap; 
-  overflow:hidden; 
-  text-overflow:ellipsis; 
-  max-width:65vw;
-}
-@media (max-width:640px){
-  .brand .tagline{ 
-    max-width:50vw; 
-    font-weight:700; 
-  }
-  
+
     /* Header */
     .nav{position:sticky;top:0;z-index:60;backdrop-filter:saturate(140%) blur(8px);background:rgba(255,255,255,.9);border-bottom:1px solid #e9f0f7}
     .nav .wrap{max-width:1200px;margin:auto;display:flex;align-items:center;gap:12px;padding:12px 18px}
@@ -158,11 +140,10 @@
   <!-- Header -->
   <header class="nav">
     <div class="wrap">
-      <a href="#top" class="brand">
-  <img src="https://i.postimg.cc/Y9f0wpZK/EE23-D38-C-FE2-F-407-A-8-D7-C-1828-DE1-E0-B7-A.png"
-       alt="شعار منصة واعي" style="height:36px;width:auto" />
-  <span class="tagline">منصة واعي – للاستشارات الإدارية والحلول الرقمية</span>
-</a>
+      <a href="#top" class="brand" aria-label="منصة واعي">
+        <img src="https://i.postimg.cc/Y9f0wpZK/EE23-D38-C-FE2-F-407-A-8-D7-C-1828-DE1-E0-B7-A.png" alt="شعار منصة واعي">
+        <div>منصة واعي – للحلول والاستشارات الإدارية</div>
+      </a>
       <nav class="links" aria-label="روابط رئيسية">
         <a href="#services">الخدمات</a>
         <a href="#impact">أثرنا</a>
