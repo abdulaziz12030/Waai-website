@@ -91,12 +91,37 @@
     .foot-links a{color:#dce9f7}
     .credit{opacity:.85}
 
-    /* WhatsApp & ToTop */
-    .wa{position:fixed;inset:auto auto 16px 16px;z-index:70} /* يسار الشاشة */
-    .wa a{display:grid;place-items:center;width:58px;height:58px;border-radius:18px;background:rgba(37,211,102,.9);box-shadow:0 12px 30px rgba(12,151,79,.28)}
-    .wa svg{width:30px;height:30px;fill:#fff}
-    #toTop{position:fixed;right:16px;bottom:86px;z-index:70;width:52px;height:52px;border:none;border-radius:14px;background:rgba(13,59,102,.9);color:#fff;box-shadow:0 10px 24px rgba(13,59,102,.25);display:none;cursor:pointer;font-size:20px}
+   <!-- زر واتساب أسفل يسار -->
+<style>
+.whatsapp-float {
+  position: fixed;
+  left: 20px; /* المسافة من اليسار */
+  bottom: 20px; /* المسافة من الأسفل */
+  width: 60px;
+  height: 60px;
+  background-color: #25D366; /* لون واتساب */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 999;
+  transition: transform 0.3s ease;
+}
 
+.whatsapp-float:hover {
+  transform: scale(1.05);
+}
+
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
+}
+</style>
+
+<a href="https://wa.me/966552794082" target="_blank" class="whatsapp-float" aria-label="تواصل عبر واتساب">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب">
+</a>
     /* Reveal */
     .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
     .reveal.show{opacity:1;transform:none}
