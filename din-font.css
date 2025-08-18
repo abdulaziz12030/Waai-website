@@ -1,12 +1,36 @@
-
+/* DIN Next Arabic - Regular */
 @font-face {
-  font-family: 'DINNext';
-  src: url('fonts/DINNext.woff2') format('woff2'),
-       url('fonts/DINNext.woff') format('woff');
-  font-weight: normal;
+  font-family: 'DINNextArabic';
+  src: url('fonts/DINNext-Regular.otf') format('opentype');
+  font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
-
-body {
-  font-family: 'DINNext', sans-serif;
+/* DIN Next Arabic - Medium */
+@font-face {
+  font-family: 'DINNextArabic';
+  src: url('fonts/DINNext-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* DIN Next Arabic - Bold */
+@font-face {
+  font-family: 'DINNextArabic';
+  src: url('fonts/DINNext-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/* DIN Next Arabic - Light */
+@font-face {
+  font-family: 'DINNextArabic';
+  src: url('fonts/DINNext-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+/* اجعل الخط الافتراضي للموقع */
+html, body {
+  font-family: 'DINNextArabic', system-ui, Arial, sans-serif;
 }
