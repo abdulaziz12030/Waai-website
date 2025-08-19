@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>طلبات الخدمات | منصة واعي</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="description" content="قدّم طلب خدمة لدى منصة واعي. يتم تحديد الخدمة تلقائيًا عند القدوم من بطاقة الخدمة.">
+  <style>
+    .wrap{max-width:860px;margin:auto;padding:24px}
+    .form-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+    label{display:block;margin:.6rem 0 .25rem;font-weight:700}
+    input,select,textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:12px}
+    textarea{min-height:140px}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="inner container">
+      <div class="brand">واعي <span class="badge">Requests</span></div>
+      <ul>
+        <li><a class="nav-link" href="index.html">الرئيسية</a></li>
+        <li><a class="nav-link" href="#form">الطلب</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <h1 style="margin:16px 0">نموذج طلب خدمة</h1>
+    <div class="form-card">
+      <form id="orderForm" action="https://formspree.io/f/your-endpoint" method="POST">
+        <label for="serviceSelect">الخدمة المطلوبة</label>
+        <select id="serviceSelect" name="service" required>
+          <option value="">— اختر —</option>
+          <option value="operational-plan">الخطة التشغيلية</option>
+          <option value="kpi-dashboards">لوحات متابعة تفاعلية</option>
+          <option value="governance-frameworks">الحوكمة وبناء الأطر</option>
+          <option value="website-profile">إنشاء مواقع تعريفية</option>
+          <option value="reports">إعداد التقارير والعروض الاحترافية</option>
+          <option value="linkedin-cv">إنشاء وتطوير السيرة الذاتية على لينكدإن</option>
+        </select>
+
+        <label for="name">الاسم</label>
+        <input id="name" name="name" type="text" required>
+
+        <label for="email">البريد الإلكتروني</label>
+        <input id="email" name="email" type="email" required>
+
+        <label for="phone">الجوال</label>
+        <input id="phone" name="phone" type="tel" inputmode="numeric">
+
+        <label for="details">تفاصيل مختصرة</label>
+        <textarea id="details" name="details" placeholder="أكتب موجز الاحتياج والأهداف والمدة المرغوبة."></textarea>
+
+        <!-- hidden ref for campaign/source -->
+        <input type="hidden" id="ref" name="ref">
+
+        <div style="margin-top:16px">
+          <button class="btn" type="submit">إرسال الطلب</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    // Map query ?service= to select value
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const service = (params.get('service') || '').toLowerCase();
+      const map = {
+        'operational-plan':'operational-plan',
+        'kpi-dashboards':'kpi-dashboards',
+        'governance-frameworks':'governance-frameworks',
+        'website-profile':'website-profile',
+        'reports':'reports',
+        'linkedin-cv':'linkedin-cv'
+      };
+      const select = document.getElementById('serviceSelect');
+      if(map[service]) select.value = map[service];
+      if (params.toString()) document.getElementById('ref').value = params.toString();
+      // Update URL on change (for shareable state)
+      select.addEventListener('change', function(){
+        const url = new URL(window.location);
+        if (this.value) url.searchParams.set('service', this.value);
+        else url.searchParams.delete('service');
+        window.history.replaceState({}, '', url);
+      });
+    })();
+  </script>
+</body>
+</html>
