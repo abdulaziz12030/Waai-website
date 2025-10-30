@@ -1,143 +1,68 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>منصة واعي | استشارات إدارية وحلول رقمية</title>
-  <meta name="description" content="منصة واعي تقدم استشارات إدارية وحلول رقمية مبتكرة تشمل الحوكمة، إدارة المشاريع، الخطط التشغيلية، وإعداد الأدوات الذكية.">
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="منصة واعي | استشارات إدارية وحلول رقمية">
-  <meta property="og:description" content="اكتشف خدمات واعي في الاستشارات الإدارية والتحول الرقمي.">
-  <meta property="og:image" content="images/hero.webp">
-  <meta property="og:type" content="website">
-  
-  <link rel="icon" href="images/logo.webp" type="image/webp">
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>منصة واعي | حلول إدارية تصنع أثرًا</title>
+  <meta name="description" content="منصة واعي للاستشارات الإدارية والحلول الرقمية" />
+  <meta name="theme-color" content="#0d3b66"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* نفس التنسيقات من الكود السابق دون تغيير */
+    body{margin:0;font-family:'Cairo',sans-serif;background:#f8f9fa;color:#0f2640;}
+    img{max-width:100%;display:block}
+    .hero{position:relative;min-height:60vh;display:grid;place-items:center;color:#fff}
+    .hero::before{content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(13,59,102,.25),rgba(13,59,102,.45)),
+      url('images/hero.webp') center/cover no-repeat;}
+    header{background:#0d3b66;color:#fff;padding:15px;display:flex;align-items:center;justify-content:space-between}
+    header img{height:40px}
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:40px}
+    .services img{border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    footer{background:#0e3c67;color:#fff;text-align:center;padding:20px;margin-top:40px}
+  </style>
 </head>
 <body>
-  <!-- Hero -->
-  <header class="hero">
-    <img src="images/hero.webp" 
-         srcset="images/hero-768.webp 768w, images/hero-1920.webp 1920w"
-         sizes="100vw" 
-         alt="منصة واعي" 
-         width="1920" height="800">
-    <div class="hero-text">
-      <h1>منصة واعي</h1>
-      <p>شريكك في الاستشارات الإدارية والحلول الرقمية</p>
-      <a href="#services" class="btn">استعرض خدماتنا</a>
-      <a href="#contact" class="btn-secondary">اطلب استشارة الآن</a>
-    </div>
+  <!-- Header -->
+  <header>
+    <a href="index.html"><img src="images/logo.webp" alt="شعار واعي"></a>
+    <nav>
+      <a href="#services" style="color:#fff;margin:0 10px">الخدمات</a>
+      <a href="#contact" style="color:#fff;margin:0 10px">تواصل</a>
+    </nav>
   </header>
 
-  <!-- Services -->
-  <section id="services" class="services">
-    <h2>خدماتنا</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="images/service1.webp" 
-             srcset="images/service1-480.webp 480w, images/service1-1000.webp 1000w"
-             sizes="(max-width: 768px) 100vw, 33vw"
-             loading="lazy" decoding="async"
-             alt="الحوكمة وبناء الأطر" width="1000" height="667">
-        <h3>الحوكمة وبناء الأطر</h3>
-      </div>
-      <div class="card">
-        <img src="images/service2.webp" 
-             srcset="images/service2-480.webp 480w, images/service2-1000.webp 1000w"
-             sizes="(max-width: 768px) 100vw, 33vw"
-             loading="lazy" decoding="async"
-             alt="إدارة المشاريع" width="1000" height="667">
-        <h3>إدارة المشاريع</h3>
-      </div>
-      <div class="card">
-        <img src="images/service3.webp" 
-             srcset="images/service3-480.webp 480w, images/service3-1000.webp 1000w"
-             sizes="(max-width: 768px) 100vw, 33vw"
-             loading="lazy" decoding="async"
-             alt="الخطط التشغيلية" width="1000" height="667">
-        <h3>الخطط التشغيلية</h3>
-      </div>
-      <div class="card">
-        <img src="images/service4.webp" 
-             srcset="images/service4-480.webp 480w, images/service4-1000.webp 1000w"
-             sizes="(max-width: 768px) 100vw, 33vw"
-             loading="lazy" decoding="async"
-             alt="التعاقب الوظيفي" width="1000" height="667">
-        <h3>التعاقب الوظيفي</h3>
-      </div>
-      <div class="card">
-        <img src="images/service5.webp" 
-             srcset="images/service5-480.webp 480w, images/service5-1000.webp 1000w"
-             sizes="(max-width: 768px) 100vw, 33vw"
-             loading="lazy" decoding="async"
-             alt="إدارة المواهب" width="1000" height="667">
-        <h3>إدارة المواهب</h3>
-      </div>
-      <div class="card">
-        <img src="images/service6.webp" 
-             srcset="images/service6-480.webp 480w, images/service6-1000.webp 1000w"
-             sizes="(max-width: 768px) 100vw, 33vw"
-             loading="lazy" decoding="async"
-             alt="الأدوات الذكية" width="1000" height="667">
-        <h3>الأدوات الذكية</h3>
-      </div>
+  <!-- Hero -->
+  <section class="hero">
+    <div style="position:relative;z-index:2;text-align:center">
+      <h1>منصة واعي</h1>
+      <p>الاستشارات والحلول الرقمية لإدارة المشاريع والتطوير المؤسسي</p>
     </div>
   </section>
 
-  <!-- Impact -->
-  <section id="impact" class="impact">
-    <h2>أثرنا</h2>
-    <div class="numbers">
-      <div><span class="counter" data-target="150">0</span><p>مشروع</p></div>
-      <div><span class="counter" data-target="95">0</span><p>% رضا العملاء</p></div>
-      <div><span class="counter" data-target="300">0</span><p>عميل</p></div>
+  <!-- Services -->
+  <section id="services">
+    <h2 style="text-align:center;margin:20px 0">خدماتنا</h2>
+    <div class="services">
+      <div><img src="images/service1.webp" alt="خدمة 1"><p>حوكمة وبناء الأطر</p></div>
+      <div><img src="images/service2.webp" alt="خدمة 2"><p>لوحات متابعة تفاعلية</p></div>
+      <div><img src="images/service3.webp" alt="خدمة 3"><p>الخطط التشغيلية</p></div>
+      <div><img src="images/service4.webp" alt="خدمة 4"><p>إنشاء مواقع تعريفية</p></div>
+      <div><img src="images/service5.webp" alt="خدمة 5"><p>إعداد التقارير والعروض</p></div>
+      <div><img src="images/service6.webp" alt="خدمة 6"><p>تطوير السيرة الذاتية</p></div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="contact">
+  <section id="contact" style="text-align:center;padding:40px">
     <h2>تواصل معنا</h2>
-    <form>
-      <input type="text" placeholder="الاسم الكامل" required>
-      <input type="email" placeholder="البريد الإلكتروني" required>
-      <input type="tel" placeholder="رقم الجوال">
-      <select>
-        <option>اختر الخدمة</option>
-        <option>الاستشارات الإدارية</option>
-        <option>إدارة المشاريع</option>
-        <option>الخطط التشغيلية</option>
-      </select>
-      <textarea placeholder="وصف مختصر لطلبك"></textarea>
-      <button type="submit">إرسال</button>
-    </form>
-    <a href="https://wa.me/966XXXXXXXXX" class="whatsapp-btn">راسلنا عبر واتساب</a>
-    <img src="images/contact.webp" alt="تواصل" width="667" height="1000" loading="lazy" decoding="async">
+    <img src="images/contact.webp" alt="صورة للتواصل" width="300">
+    <p>راسلنا عبر البريد: <a href="mailto:info@waai.sa">info@waai.sa</a></p>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>© 2025 منصة واعي. جميع الحقوق محفوظة.</p>
+    <p>© 2025 منصة واعي - جميع الحقوق محفوظة</p>
   </footer>
-
-  <!-- JS -->
-  <script>
-    // عدّاد الأرقام
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => {
-      const updateCount = () => {
-        const target = +counter.getAttribute('data-target');
-        const count = +counter.innerText;
-        const increment = target / 200;
-        if(count < target) {
-          counter.innerText = Math.ceil(count + increment);
-          setTimeout(updateCount, 20);
-        } else {
-          counter.innerText = target;
-        }
-      };
-      updateCount();
-    });
-  </script>
 </body>
 </html>
